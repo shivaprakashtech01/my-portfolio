@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Risk Management Dashboard | Shiva</title>
+    <meta name="description"
+          content="Plan trade risk, calculate position sizes, and maintain a trading risk journal.">
+
+    <link rel="stylesheet" href="risk-management.css">
+</head>
+
+<body>
+<div class="risk-dashboard">
+
+    <aside class="risk-sidebar">
+        <a href="index.html" class="brand">
+            <span class="brand-icon">S</span>
+            <span>Shiva<span class="brand-accent">.</span></span>
+        </a>
+
+        <p class="sidebar-label">TRADING WORKSPACE</p>
+
+        <nav class="sidebar-nav">
+            <a href="index.html">← Back to Portfolio</a>
+            <a href="#overview" class="active">Overview</a>
+            <a href="#calculator">Risk Calculator</a>
+            <a href="#journal">Trade Journal</a>
+            <a href="#rules">Risk Rules</a>
+        </nav>
+
+        <div class="sidebar-note">
+            <span class="status-dot"></span>
+            <span>Plan the risk before the trade.</span>
+        </div>
+    </aside>
+
+    <main class="risk-main">
+
+        <header class="page-header" id="overview">
+            <div>
+                <p class="eyebrow">TRADING TOOLS / RISK CONTROL</p>
+                <h1>Risk Management<span class="green">.</span></h1>
+                <p class="subtitle">
+                    Define your risk, calculate your position, and review your decisions.
+                </p>
+            </div>
+
+            <div class="header-badge">
+                <span class="status-dot"></span>
+                Risk planning workspace
+            </div>
+        </header>
+
+        <!-- ACCOUNT SETTINGS -->
+        <section class="panel account-panel">
+            <div class="section-heading">
+                <div>
+                    <p class="eyebrow">YOUR ACCOUNT</p>
+                    <h2>Account Settings</h2>
+                </div>
+                <span class="badge">Personal configuration</span>
+            </div>
+
+            <div class="form-grid account-grid">
+                <label>
+                    Account balance
+                    <input id="accountBalance" type="number"
+                           min="0.01" step="0.01" value="100000">
+                </label>
+
+                <label>
+                    Risk per trade (%)
+                    <input id="riskPercent" type="number"
+                           min="0.01" max="100" step="0.1" value="1">
+                </label>
+
+                <label>
+                    Maximum daily loss (%)
+                    <input id="dailyLimitPercent" type="number"
+                           min="0.01" max="100" step="0.1" value="3">
+                </label>
+            </div>
+
+            <p class="field-hint">
+                Example values are provided for demonstration. Enter your own figures.
+                These settings are planning preferences, not recommendations.
+            </p>
+
+            <div class="account-summary">
+                <div>
+                    <span>Planned risk per trade</span>
+                    <strong id="accountRiskValue">—</strong>
+                </div>
+                <div>
+                    <span>Daily loss threshold</span>
+                    <strong id="dailyLimitValue">—</strong>
+                </div>
+            </div>
+        </section>
+
+        <!-- STATS -->
+        <section class="stats-grid">
+            <article class="stat-card">
+                <span class="stat-label">Account Balance</span>
+                <strong id="statBalance">—</strong>
+                <span class="stat-foot">Configured balance</span>
+            </article>
+
+            <article class="stat-card">
+                <span class="stat-label">Risk Per Trade</span>
+                <strong id="statRisk">—</strong>
+                <span class="stat-foot">Based on your settings</span>
+            </article>
+
+            <article class="stat-card">
+                <span class="stat-label">Trades Recorded</span>
+                <strong id="statTrades">0</strong>
+                <span class="stat-foot">Saved journal entries</span>
+            </article>
+
+            <article class="stat-card">
+                <span class="stat-label">Journal Net P/L</span>
+                <strong id="statPnl">—</strong>
+                <span class="stat-foot">Sum of recorded results</span>
+            </article>
+        </section>
+
+        <!-- RISK CALCULATOR -->
+        <section class="panel" id="calculator">
+            <div class="section-heading">
+                <div>
+                    <p class="eyebrow">BEFORE ENTERING A TRADE</p>
+                    <h2>Position Size Calculator</h2>
+                </div>
+                <span class="badge">Live calculation</span>
+            </div>
+
+            <p class="section-description">
+                Estimate position size from your entry, stop-loss, and chosen
+                risk amount. This basic calculator assumes a linear instrument
+                where price movement translates directly into P/L.
+            </p>
+
+            <div class="form-grid">
+                <label>
+                    Entry price
+                    <input id="entryPrice" type="number"
+                           min="0.00000001" step="any" placeholder="e.g. 250">
+                </label>
+
+                <label>
+                    Stop-loss price
+                    <input id="stopPrice" type="number"
+                           min="0" step="any" placeholder="e.g. 245">
+                </label>
+
+                <label>
+                    Target price
+                    <input id="targetPrice" type="number"
+                           min="0" step="any" placeholder="e.g. 260">
+                </label>
+
+                <label>
+                    Risk amount override (optional)
+                    <input id="riskOverride" type="number"
+                           min="0.01" step="0.01" placeholder="Use account risk">
+                </label>
+
+                <label>
+                    Estimated round-trip costs per unit
+                    <input id="costPerUnit" type="number"
+                           min="0" step="any" value="0">
+                </label>
+
+                <label>
+                    Quantity step / lot size
+                    <input id="quantityStep" type="number"
+                           min="0.00000001" step="any" value="1">
+                </label>
+            </div>
+
+            <div class="button-row">
+                <button id="calculateRisk" type="button">Calculate Risk</button>
+                <button id="resetCalculator" type="button" class="btn-secondary">
+                    Reset
+                </button>
+            </div>
+
+            <p id="calculatorMessage" class="message" role="status" aria-live="polite">
+                Enter your prices to calculate the planned position.
+            </p>
+
+            <div class="results-grid">
+                <article class="result-card">
+                    <span>Risk Budget</span>
+                    <strong id="resultRisk">—</strong>
+                </article>
+
+                <article class="result-card">
+                    <span>Stop Distance</span>
+                    <strong id="resultDistance">—</strong>
+                </article>
+
+                <article class="result-card">
+                    <span>Estimated Quantity</span>
+                    <strong id="resultQuantity">—</strong>
+                </article>
+
+                <article class="result-card">
+                    <span>Estimated Risk</span>
+                    <strong id="resultActualRisk">—</strong>
+                </article>
+
+                <article class="result-card">
+                    <span>Potential Reward</span>
+                    <strong id="resultReward">—</strong>
+                </article>
+
+                <article class="result-card">
+                    <span>Reward / Risk</span>
+                    <strong id="resultRR">—</strong>
+                </article>
+            </div>
+
+            <p class="field-hint">
+                Quantity is rounded down to the selected step. The estimate includes
+                the entered per-unit costs but not every possible fee, slippage,
+                margin requirement, contract multiplier, or currency conversion.
+            </p>
+        </section>
+
+        <!-- TRADE JOURNAL -->
+        <section class="panel" id="journal">
+            <div class="section-heading">
+                <div>
+                    <p class="eyebrow">REVIEW YOUR EXECUTION</p>
+                    <h2>Trade Journal</h2>
+                </div>
+                <span class="badge">Saved in this browser</span>
+            </div>
+
+            <form id="tradeForm">
+                <div class="form-grid">
+                    <label>
+                        Instrument / symbol
+                        <input id="tradeSymbol" maxlength="40"
+                               placeholder="e.g. NIFTY, AAPL" required>
+                    </label>
+
+                    <label>
+                        Direction
+                        <select id="tradeDirection">
+                            <option value="Long">Long</option>
+                            <option value="Short">Short</option>
+                        </select>
+                    </label>
+
+                    <label>
+                        Planned risk amount
+                        <input id="tradeRisk" type="number"
+                               min="0.01" step="0.01" required>
+                    </label>
+
+                    <label>
+                        Realized P/L
+                        <input id="tradePnl" type="number"
+                               step="0.01" required
+                               placeholder="Use a negative value for a loss">
+                    </label>
+
+                    <label class="full-width">
+                        Notes
+                        <textarea id="tradeNotes" rows="3" maxlength="1000"
+                                  placeholder="Setup, execution, mistakes, lessons learned..."></textarea>
+                    </label>
+                </div>
+
+                <div class="button-row">
+                    <button type="submit">Save Trade</button>
+                </div>
+            </form>
+
+            <div class="table-wrapper">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Date</th>
+                            <th>Symbol</th>
+                            <th>Direction</th>
+                            <th>Planned Risk</th>
+                            <th>Realized P/L</th>
+                            <th>R Multiple</th>
+                            <th>Notes</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody id="tradeTableBody"></tbody>
+                </table>
+            </div>
+
+            <p id="journalEmpty" class="empty-state">
+                No trades recorded yet. Your saved entries will appear here.
+            </p>
+
+            <button id="exportTrades" type="button" class="btn-secondary">
+                Export Journal CSV
+            </button>
+        </section>
+
+        <!-- RISK RULES -->
+        <section class="panel" id="rules">
+            <div class="section-heading">
+                <div>
+                    <p class="eyebrow">PRE-TRADE ROUTINE</p>
+                    <h2>Risk Rules Checklist</h2>
+                </div>
+                <span class="badge" id="checklistCount">0 / 6 complete</span>
+            </div>
+
+            <p class="section-description">
+                Check each rule only after you have verified it for your trade.
+            </p>
+
+            <div class="checklist">
+                <label class="check-item">
+                    <input type="checkbox" data-rule="stop">
+                    <span>
+                        <strong>Stop-loss defined</strong>
+                        <small>I know what price invalidates my setup.</small>
+                    </span>
+                </label>
+
+                <label class="check-item">
+                    <input type="checkbox" data-rule="size">
+                    <span>
+                        <strong>Position size calculated</strong>
+                        <small>My quantity is consistent with my risk budget.</small>
+                    </span>
+                </label>
+
+                <label class="check-item">
+                    <input type="checkbox" data-rule="reward">
+                    <span>
+                        <strong>Reward-to-risk reviewed</strong>
+                        <small>I assessed the potential reward against the risk.</small>
+                    </span>
+                </label>
+
+                <label class="check-item">
+                    <input type="checkbox" data-rule="costs">
+                    <span>
+                        <strong>Costs and slippage considered</strong>
+                        <small>I considered fees and possible execution differences.</small>
+                    </span>
+                </label>
+
+                <label class="check-item">
+                    <input type="checkbox" data-rule="daily">
+                    <span>
+                        <strong>Daily loss limit reviewed</strong>
+                        <small>I know when I should stop trading for the day.</small>
+                    </span>
+                </label>
+
+                <label class="check-item">
+                    <input type="checkbox" data-rule="emotion">
+                    <span>
+                        <strong>Emotion and discipline check</strong>
+                        <small>I am not trading impulsively or trying to recover a loss.</small>
+                    </span>
+                </label>
+            </div>
+
+            <button id="resetChecklist" type="button" class="btn-secondary">
+                Reset Checklist
+            </button>
+        </section>
+
+        <footer class="page-footer">
+            <p>Risk first. Process over impulse.</p>
+            <p>Educational tool only — verify calculations for your instrument and broker.</p>
+        </footer>
+
+    </main>
+</div>
+
+<script src="risk-management.js"></script>
+</body>
+</html>

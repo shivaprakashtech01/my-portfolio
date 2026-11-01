@@ -1,0 +1,814 @@
+
+/* ============================
+   TRADING JOURNAL THEME
+============================ */
+
+:root {
+    --bg: #07110d;
+    --sidebar: #091610;
+    --surface: #0d1c14;
+    --surface-hover: #11251a;
+    --border: #1d3828;
+    --green: #00e676;
+    --green-soft: #123c27;
+    --text: #edf7f0;
+    --muted: #91a99a;
+    --red: #ff6b75;
+    --yellow: #f4c95d;
+    --radius: 16px;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 24px;
+}
+
+body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--text);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    font-size: 14px;
+    line-height: 1.6;
+}
+
+button,
+input,
+select,
+textarea {
+    font: inherit;
+}
+
+button,
+a {
+    -webkit-tap-highlight-color: transparent;
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+button {
+    cursor: pointer;
+}
+
+.green-text {
+    color: var(--green);
+}
+
+.muted {
+    color: var(--muted);
+}
+
+.stat-label,
+.sidebar-label,
+.eyebrow {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 1.2px;
+}
+
+.stat-label,
+.sidebar-label {
+    color: var(--muted);
+}
+
+.eyebrow {
+    color: var(--green);
+    margin-bottom: 8px;
+}
+
+
+/* ============================
+   MAIN LAYOUT
+============================ */
+
+.journal-layout {
+    min-height: 100vh;
+}
+
+.journal-sidebar {
+    width: 245px;
+    position: fixed;
+    inset: 0 auto 0 0;
+    z-index: 10;
+    display: flex;
+    flex-direction: column;
+    padding: 28px 18px;
+    background: var(--sidebar);
+    border-right: 1px solid var(--border);
+}
+
+.journal-brand {
+    display: flex;
+    align-items: center;
+    gap: 11px;
+    margin: 0 0 42px 7px;
+    font-size: 20px;
+    font-weight: 800;
+}
+
+.brand-icon {
+    display: grid;
+    place-items: center;
+    width: 36px;
+    height: 36px;
+    border-radius: 11px;
+    color: #06130b;
+    background: var(--green);
+}
+
+.sidebar-label {
+    margin: 0 0 15px 9px;
+    font-size: 10px;
+}
+
+.journal-nav {
+    display: grid;
+    gap: 7px;
+}
+
+.nav-link {
+    padding: 12px 13px;
+    border: 1px solid transparent;
+    border-radius: 10px;
+    color: var(--muted);
+    transition: 0.2s ease;
+}
+
+.nav-link:hover,
+.nav-link.active {
+    color: var(--green);
+    background: var(--green-soft);
+    border-color: #1b5634;
+}
+
+.sidebar-bottom {
+    margin-top: auto;
+}
+
+.sidebar-status {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 13px 8px;
+    color: var(--muted);
+    font-size: 11px;
+}
+
+.status-dot {
+    display: inline-block;
+    flex: 0 0 auto;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--green);
+    box-shadow: 0 0 10px #00e67645;
+}
+
+.back-home {
+    display: block;
+    margin-top: 10px;
+    padding: 12px 9px;
+    border-top: 1px solid var(--border);
+    color: var(--muted);
+}
+
+.back-home:hover {
+    color: var(--green);
+}
+
+.journal-main {
+    width: calc(100% - 245px);
+    max-width: 1800px;
+    margin-left: 245px;
+    padding: 38px clamp(20px, 4vw, 60px);
+}
+
+.journal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 20px;
+    margin-bottom: 38px;
+}
+
+.journal-header h1 {
+    margin: 0;
+    font-size: clamp(28px, 3vw, 40px);
+    letter-spacing: -1.4px;
+    line-height: 1.2;
+}
+
+.journal-header p {
+    margin: 10px 0 0;
+}
+
+.header-date {
+    display: flex;
+    align-items: center;
+    gap: 9px;
+    padding: 10px 13px;
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    background: var(--surface);
+    color: var(--muted);
+    white-space: nowrap;
+    font-size: 12px;
+}
+
+
+/* ============================
+   SECTIONS AND CARDS
+============================ */
+
+.journal-section {
+    margin-bottom: 42px;
+}
+
+.section-heading {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 18px;
+}
+
+.section-heading h2 {
+    margin: 0;
+    font-size: 21px;
+    letter-spacing: -0.4px;
+}
+
+.section-heading p {
+    margin: 5px 0 0;
+    font-size: 13px;
+}
+
+.section-tag {
+    padding: 6px 10px;
+    border: 1px solid #205638;
+    border-radius: 7px;
+    background: var(--green-soft);
+    color: var(--green);
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: 1px;
+}
+
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 16px;
+}
+
+.stat-card,
+.panel {
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    background: var(--surface);
+}
+
+.stat-card {
+    min-width: 0;
+    padding: 21px;
+    transition: border-color 0.2s, transform 0.2s;
+}
+
+.stat-card:hover {
+    border-color: #2b6742;
+    transform: translateY(-2px);
+}
+
+.stat-value {
+    overflow-wrap: anywhere;
+    margin: 13px 0 5px;
+    font-size: clamp(22px, 2.1vw, 31px);
+    font-weight: 750;
+    letter-spacing: -0.8px;
+}
+
+.stat-caption {
+    color: var(--muted);
+    font-size: 11px;
+}
+
+
+/* ============================
+   FORMS
+============================ */
+
+.panel {
+    padding: 24px;
+}
+
+.form-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 20px;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    min-width: 0;
+}
+
+.form-group label,
+.notes-panel label {
+    color: #dcece1;
+    font-size: 12px;
+    font-weight: 650;
+}
+
+.full-width {
+    grid-column: 1 / -1;
+}
+
+input,
+select,
+textarea {
+    width: 100%;
+    min-width: 0;
+    padding: 12px 13px;
+    outline: none;
+    border: 1px solid #254431;
+    border-radius: 9px;
+    background: #08150e;
+    color: var(--text);
+    transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+input,
+select {
+    min-height: 45px;
+}
+
+textarea {
+    resize: vertical;
+    min-height: 100px;
+}
+
+input::placeholder,
+textarea::placeholder {
+    color: #637b6b;
+}
+
+input:focus,
+select:focus,
+textarea:focus {
+    border-color: var(--green);
+    box-shadow: 0 0 0 3px #00e67612;
+}
+
+input[type="date"] {
+    color-scheme: dark;
+}
+
+.calculation-preview {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 15px;
+    margin-top: 24px;
+    padding: 17px;
+    border: 1px solid #205638;
+    border-radius: 12px;
+    background: #0a2013;
+}
+
+.preview-value {
+    margin-top: 4px;
+    font-size: 25px;
+    font-weight: 800;
+}
+
+.preview-note {
+    color: var(--muted);
+    font-size: 11px;
+}
+
+.form-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 12px;
+    margin-top: 22px;
+}
+
+.btn-primary,
+.btn-secondary {
+    min-height: 43px;
+    padding: 11px 17px;
+    border: 1px solid transparent;
+    border-radius: 9px;
+    font-weight: 700;
+    transition: 0.2s ease;
+}
+
+.btn-primary {
+    background: var(--green);
+    color: #06130b;
+}
+
+.btn-primary:hover {
+    background: #40f394;
+    transform: translateY(-1px);
+}
+
+.btn-secondary {
+    border-color: var(--border);
+    background: #102117;
+    color: var(--text);
+}
+
+.btn-secondary:hover {
+    border-color: var(--green);
+    color: var(--green);
+}
+
+
+/* ============================
+   FILTERS AND TABLE
+============================ */
+
+.filter-bar {
+    display: grid;
+    grid-template-columns: minmax(180px, 1fr) 160px 160px auto;
+    align-items: end;
+    gap: 14px;
+    margin-bottom: 16px;
+    padding: 18px;
+}
+
+.table-container {
+    overflow-x: auto;
+    padding: 0;
+}
+
+.trade-table {
+    width: 100%;
+    border-collapse: collapse;
+    white-space: nowrap;
+    font-size: 12px;
+}
+
+.trade-table th {
+    padding: 15px 14px;
+    background: #102117;
+    color: var(--muted);
+    text-align: left;
+    font-size: 10px;
+    font-weight: 750;
+    letter-spacing: 0.7px;
+}
+
+.trade-table td {
+    padding: 15px 14px;
+    border-top: 1px solid var(--border);
+}
+
+.trade-table tbody tr:hover {
+    background: #102117;
+}
+
+.symbol-cell {
+    font-weight: 750;
+}
+
+.direction-pill,
+.result-pill {
+    display: inline-block;
+    padding: 4px 8px;
+    border-radius: 6px;
+    font-size: 10px;
+    font-weight: 750;
+}
+
+.direction-pill {
+    background: #172a36;
+    color: #9dd6ff;
+}
+
+.result-win {
+    background: #123c27;
+    color: var(--green);
+}
+
+.result-loss {
+    background: #3c191e;
+    color: var(--red);
+}
+
+.result-breakeven {
+    background: #332d18;
+    color: var(--yellow);
+}
+
+.positive {
+    color: var(--green) !important;
+}
+
+.negative {
+    color: var(--red) !important;
+}
+
+.neutral {
+    color: var(--yellow) !important;
+}
+
+.delete-trade {
+    padding: 6px 9px;
+    border: 1px solid #563035;
+    border-radius: 7px;
+    background: #2b171b;
+    color: #ff9299;
+    font-size: 11px;
+}
+
+.delete-trade:hover {
+    background: #482026;
+}
+
+.empty-state {
+    padding: 48px 20px;
+    text-align: center;
+}
+
+.empty-icon {
+    display: grid;
+    place-items: center;
+    width: 55px;
+    height: 55px;
+    margin: 0 auto 12px;
+    border: 1px solid #205638;
+    border-radius: 16px;
+    background: var(--green-soft);
+    color: var(--green);
+    font-size: 25px;
+}
+
+.empty-state h3 {
+    margin: 0 0 7px;
+}
+
+.empty-state p {
+    margin: 0;
+    color: var(--muted);
+    font-size: 12px;
+}
+
+.table-footer {
+    margin: 12px 0;
+    color: var(--muted);
+    font-size: 11px;
+}
+
+
+/* ============================
+   PERFORMANCE ANALYSIS
+============================ */
+
+.analysis-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 1.5fr) minmax(270px, 1fr);
+    gap: 18px;
+}
+
+.chart-panel,
+.analysis-panel {
+    min-width: 0;
+    padding: 23px;
+}
+
+.chart-panel h3,
+.analysis-panel h3 {
+    margin: 0;
+    font-size: 15px;
+}
+
+.chart-panel > p {
+    margin: 5px 0 20px;
+    font-size: 11px;
+}
+
+.chart-wrap {
+    position: relative;
+    height: 300px;
+    width: 100%;
+}
+
+.metric-row {
+    display: flex;
+    justify-content: space-between;
+    gap: 15px;
+    padding: 15px 0;
+    border-bottom: 1px solid var(--border);
+    font-size: 12px;
+}
+
+.metric-row:last-child {
+    border-bottom: 0;
+}
+
+.metric-row span {
+    color: var(--muted);
+}
+
+.metric-row strong {
+    text-align: right;
+    overflow-wrap: anywhere;
+}
+
+
+/* ============================
+   NOTES AND FOOTER
+============================ */
+
+.notes-panel {
+    display: grid;
+    gap: 13px;
+}
+
+.notes-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 12px;
+}
+
+.notes-footer .muted {
+    font-size: 11px;
+}
+
+.journal-footer {
+    padding: 22px 0 5px;
+    border-top: 1px solid var(--border);
+    color: var(--muted);
+    text-align: center;
+    font-size: 11px;
+}
+
+.journal-footer p {
+    margin: 5px 0;
+}
+
+
+/* ============================
+   RESPONSIVE DESIGN
+============================ */
+
+@media (max-width: 1200px) {
+    .stats-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .filter-bar {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .filter-bar > button {
+        width: 100%;
+    }
+}
+
+@media (max-width: 850px) {
+    .journal-sidebar {
+        position: relative;
+        width: 100%;
+        padding: 17px;
+        border-right: 0;
+        border-bottom: 1px solid var(--border);
+    }
+
+    .journal-brand {
+        margin: 0 0 18px;
+    }
+
+    .sidebar-label {
+        margin-bottom: 9px;
+    }
+
+    .journal-nav {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 7px;
+    }
+
+    .nav-link {
+        padding: 8px 10px;
+        font-size: 12px;
+    }
+
+    .sidebar-bottom {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 12px;
+        margin-top: 12px;
+    }
+
+    .sidebar-status {
+        padding: 8px 0;
+    }
+
+    .back-home {
+        margin: 0;
+        padding: 8px 0;
+        border: 0;
+        white-space: nowrap;
+    }
+
+    .journal-main {
+        width: 100%;
+        margin: 0;
+        padding: 28px 20px;
+    }
+
+    .analysis-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 560px) {
+    .journal-main {
+        padding: 23px 14px;
+    }
+
+    .journal-header {
+        flex-direction: column;
+    }
+
+    .header-date {
+        white-space: normal;
+    }
+
+    .stats-grid {
+        gap: 10px;
+    }
+
+    .stat-card {
+        padding: 15px;
+    }
+
+    .stat-value {
+        font-size: 23px;
+    }
+
+    .form-grid {
+        grid-template-columns: 1fr;
+        gap: 16px;
+    }
+
+    .full-width {
+        grid-column: auto;
+    }
+
+    .panel {
+        padding: 17px;
+    }
+
+    .filter-bar {
+        grid-template-columns: 1fr;
+        gap: 13px;
+    }
+
+    .section-heading h2 {
+        font-size: 19px;
+    }
+
+    .form-actions {
+        flex-direction: column-reverse;
+    }
+
+    .form-actions button {
+        width: 100%;
+    }
+
+    .calculation-preview {
+        align-items: flex-start;
+        flex-direction: column;
+    }
+
+    .chart-panel,
+    .analysis-panel {
+        padding: 17px;
+    }
+
+    .chart-wrap {
+        height: 240px;
+    }
+
+    .sidebar-bottom {
+        align-items: flex-start;
+        flex-direction: column;
+        gap: 0;
+    }
+}

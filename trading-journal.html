@@ -1,0 +1,440 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Trading Journal | My Portfolio</title>
+
+    <link rel="stylesheet" href="trading-journal.css">
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="trading-journal.js" defer></script>
+</head>
+
+<body>
+    <div class="journal-layout">
+
+        <!-- SIDEBAR -->
+        <aside class="journal-sidebar">
+            <a href="index.html" class="journal-brand">
+                <span class="brand-icon">◆</span>
+                <span>My<span class="green-text">World</span></span>
+            </a>
+
+            <div class="sidebar-label">TRADING WORKSPACE</div>
+
+            <nav class="journal-nav">
+                <a href="#overview" class="nav-link active">▦ Overview</a>
+                <a href="#add-trade" class="nav-link">＋ Add Trade</a>
+                <a href="#trade-history" class="nav-link">☷ Trade History</a>
+                <a href="#performance" class="nav-link">↗ Performance</a>
+                <a href="#journal-notes" class="nav-link">✎ Journal Notes</a>
+            </nav>
+
+            <div class="sidebar-bottom">
+                <div class="sidebar-status">
+                    <span class="status-dot"></span>
+                    Local storage enabled
+                </div>
+
+                <a href="index.html" class="back-home">← Back to Portfolio</a>
+            </div>
+        </aside>
+
+
+        <!-- MAIN CONTENT -->
+        <main class="journal-main">
+
+            <!-- HEADER -->
+            <header class="journal-header">
+                <div>
+                    <div class="eyebrow">TRADING WORKSPACE / JOURNAL</div>
+                    <h1>Trading <span class="green-text">Journal</span></h1>
+                    <p class="muted">
+                        Track your trades. Learn from your decisions. Improve your process.
+                    </p>
+                </div>
+
+                <div class="header-date">
+                    <span class="status-dot"></span>
+                    <span id="today-date">Loading date...</span>
+                </div>
+            </header>
+
+
+            <!-- OVERVIEW -->
+            <section id="overview" class="journal-section">
+                <div class="section-heading">
+                    <div>
+                        <h2>Performance Overview</h2>
+                        <p class="muted">A snapshot of your recorded trades.</p>
+                    </div>
+                </div>
+
+                <div class="stats-grid">
+
+                    <article class="stat-card">
+                        <span class="stat-label">TOTAL TRADES</span>
+                        <div class="stat-value" id="total-trades">0</div>
+                        <span class="stat-caption">Recorded trades</span>
+                    </article>
+
+                    <article class="stat-card">
+                        <span class="stat-label">WIN RATE</span>
+                        <div class="stat-value green-text" id="win-rate">0%</div>
+                        <span class="stat-caption" id="win-loss-caption">
+                            0 wins · 0 losses
+                        </span>
+                    </article>
+
+                    <article class="stat-card">
+                        <span class="stat-label">NET P&L</span>
+                        <div class="stat-value" id="net-pnl">₹0.00</div>
+                        <span class="stat-caption">After recorded fees</span>
+                    </article>
+
+                    <article class="stat-card">
+                        <span class="stat-label">PROFIT FACTOR</span>
+                        <div class="stat-value" id="profit-factor">—</div>
+                        <span class="stat-caption">Gross profit / gross loss</span>
+                    </article>
+
+                </div>
+            </section>
+
+
+            <!-- ADD TRADE -->
+            <section id="add-trade" class="journal-section">
+                <div class="section-heading">
+                    <div>
+                        <h2>Add a Trade</h2>
+                        <p class="muted">
+                            Record the details of a completed trade.
+                        </p>
+                    </div>
+                    <span class="section-tag">NEW ENTRY</span>
+                </div>
+
+                <form id="trade-form" class="panel">
+
+                    <div class="form-grid">
+
+                        <div class="form-group">
+                            <label for="trade-date">Trade Date *</label>
+                            <input type="date" id="trade-date" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="instrument">Instrument / Symbol *</label>
+                            <input
+                                type="text"
+                                id="instrument"
+                                placeholder="e.g. NIFTY, RELIANCE, BTC"
+                                maxlength="40"
+                                required
+                            >
+                        </div>
+
+                        <div class="form-group">
+                            <label for="direction">Direction *</label>
+                            <select id="direction" required>
+                                <option value="Long">Long / Buy</option>
+                                <option value="Short">Short / Sell</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="strategy">Strategy</label>
+                            <select id="strategy">
+                                <option value="Price Action">Price Action</option>
+                                <option value="Breakout">Breakout</option>
+                                <option value="Pullback">Pullback</option>
+                                <option value="Trend Following">Trend Following</option>
+                                <option value="Support / Resistance">Support / Resistance</option>
+                                <option value="Candlestick Pattern">Candlestick Pattern</option>
+                                <option value="Other">Other</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="entry-price">Entry Price *</label>
+                            <input
+                                type="number"
+                                id="entry-price"
+                                min="0.00000001"
+                                step="any"
+                                placeholder="0.00"
+                                required
+                            >
+                        </div>
+
+                        <div class="form-group">
+                            <label for="exit-price">Exit Price *</label>
+                            <input
+                                type="number"
+                                id="exit-price"
+                                min="0.00000001"
+                                step="any"
+                                placeholder="0.00"
+                                required
+                            >
+                        </div>
+
+                        <div class="form-group">
+                            <label for="quantity">Quantity *</label>
+                            <input
+                                type="number"
+                                id="quantity"
+                                min="0.00000001"
+                                step="any"
+                                placeholder="1"
+                                required
+                            >
+                        </div>
+
+                        <div class="form-group">
+                            <label for="fees">Total Fees & Charges</label>
+                            <input
+                                type="number"
+                                id="fees"
+                                min="0"
+                                step="any"
+                                value="0"
+                            >
+                        </div>
+
+                        <div class="form-group full-width">
+                            <label for="trade-setup">Setup / Reason for Entry</label>
+                            <input
+                                type="text"
+                                id="trade-setup"
+                                maxlength="200"
+                                placeholder="e.g. Breakout above resistance with volume"
+                            >
+                        </div>
+
+                        <div class="form-group full-width">
+                            <label for="trade-notes">Notes & Lessons Learned</label>
+                            <textarea
+                                id="trade-notes"
+                                rows="3"
+                                maxlength="2000"
+                                placeholder="Why did you enter? Did you follow your plan? What can you improve?"
+                            ></textarea>
+                        </div>
+
+                    </div>
+
+                    <div class="calculation-preview">
+                        <div>
+                            <span class="stat-label">ESTIMATED NET P&L</span>
+                            <div id="preview-pnl" class="preview-value">₹0.00</div>
+                        </div>
+
+                        <span class="preview-note">
+                            Updates as you enter prices and quantity.
+                        </span>
+                    </div>
+
+                    <div class="form-actions">
+                        <button type="reset" class="btn-secondary">
+                            Clear Form
+                        </button>
+
+                        <button type="submit" class="btn-primary">
+                            + Save Trade
+                        </button>
+                    </div>
+
+                </form>
+            </section>
+
+
+            <!-- TRADE HISTORY -->
+            <section id="trade-history" class="journal-section">
+                <div class="section-heading">
+                    <div>
+                        <h2>Trade History</h2>
+                        <p class="muted">Review and manage your recorded trades.</p>
+                    </div>
+                </div>
+
+                <div class="filter-bar panel">
+                    <div class="form-group search-group">
+                        <label for="search-trades">Search</label>
+                        <input
+                            type="search"
+                            id="search-trades"
+                            placeholder="Search symbol or strategy..."
+                        >
+                    </div>
+
+                    <div class="form-group">
+                        <label for="filter-direction">Direction</label>
+                        <select id="filter-direction">
+                            <option value="all">All Directions</option>
+                            <option value="Long">Long</option>
+                            <option value="Short">Short</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="filter-result">Result</label>
+                        <select id="filter-result">
+                            <option value="all">All Results</option>
+                            <option value="win">Wins</option>
+                            <option value="loss">Losses</option>
+                            <option value="breakeven">Breakeven</option>
+                        </select>
+                    </div>
+
+                    <button id="export-trades" type="button" class="btn-secondary">
+                        ↓ Export CSV
+                    </button>
+                </div>
+
+                <div class="table-container panel">
+                    <table class="trade-table">
+                        <thead>
+                            <tr>
+                                <th>Date</th>
+                                <th>Symbol</th>
+                                <th>Direction</th>
+                                <th>Entry</th>
+                                <th>Exit</th>
+                                <th>Qty</th>
+                                <th>Net P&L</th>
+                                <th>Result</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+
+                        <tbody id="trade-table-body">
+                            <!-- JavaScript inserts trades here -->
+                        </tbody>
+                    </table>
+
+                    <div id="empty-state" class="empty-state">
+                        <div class="empty-icon">↗</div>
+                        <h3>No trades recorded yet</h3>
+                        <p>Add your first trade to start tracking your performance.</p>
+                    </div>
+                </div>
+
+                <p class="table-footer" id="trade-count-label">
+                    Showing 0 trades
+                </p>
+            </section>
+
+
+            <!-- PERFORMANCE -->
+            <section id="performance" class="journal-section">
+                <div class="section-heading">
+                    <div>
+                        <h2>Performance Analysis</h2>
+                        <p class="muted">
+                            Understand how your recorded results change over time.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="analysis-grid">
+
+                    <article class="panel chart-panel">
+                        <h3>Cumulative Net P&L</h3>
+                        <p class="muted">Based on your recorded trades, by date.</p>
+
+                        <div class="chart-wrap">
+                            <canvas id="pnl-chart"></canvas>
+                        </div>
+                    </article>
+
+                    <article class="panel analysis-panel">
+                        <h3>Trading Statistics</h3>
+
+                        <div class="metric-row">
+                            <span>Winning Trades</span>
+                            <strong id="winning-trades">0</strong>
+                        </div>
+
+                        <div class="metric-row">
+                            <span>Losing Trades</span>
+                            <strong id="losing-trades">0</strong>
+                        </div>
+
+                        <div class="metric-row">
+                            <span>Average Win</span>
+                            <strong id="average-win">₹0.00</strong>
+                        </div>
+
+                        <div class="metric-row">
+                            <span>Average Loss</span>
+                            <strong id="average-loss">₹0.00</strong>
+                        </div>
+
+                        <div class="metric-row">
+                            <span>Largest Win</span>
+                            <strong id="largest-win">₹0.00</strong>
+                        </div>
+
+                        <div class="metric-row">
+                            <span>Largest Loss</span>
+                            <strong id="largest-loss">₹0.00</strong>
+                        </div>
+
+                        <div class="metric-row">
+                            <span>Average Net / Trade</span>
+                            <strong id="average-trade">₹0.00</strong>
+                        </div>
+                    </article>
+
+                </div>
+            </section>
+
+
+            <!-- JOURNAL NOTES -->
+            <section id="journal-notes" class="journal-section">
+                <div class="section-heading">
+                    <div>
+                        <h2>Trading Reflections</h2>
+                        <p class="muted">
+                            Keep your personal rules and lessons in one place.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="panel notes-panel">
+                    <label for="general-notes">My trading rules and observations</label>
+
+                    <textarea
+                        id="general-notes"
+                        rows="6"
+                        maxlength="10000"
+                        placeholder="Example: Wait for confirmation before entering. Never increase risk to recover a loss..."
+                    ></textarea>
+
+                    <div class="notes-footer">
+                        <span id="notes-status" class="muted">Not saved yet</span>
+
+                        <button id="save-notes" class="btn-primary" type="button">
+                            Save Reflections
+                        </button>
+                    </div>
+                </div>
+            </section>
+
+
+            <!-- FOOTER -->
+            <footer class="journal-footer">
+                <p>
+                    Built for consistency, discipline, and continuous improvement.
+                </p>
+                <p>Keep learning. Protect your capital. Follow your plan.</p>
+            </footer>
+
+        </main>
+    </div>
+</body>
+</html>

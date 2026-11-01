@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Price Action | Shiva's Trading Hub</title>
+
+    <link rel="stylesheet" href="price-action.css">
+
+    <!-- Icons -->
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+    >
+</head>
+
+<body>
+
+    <div class="dashboard">
+
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <a href="index.html" class="brand">
+                <span class="brand-icon">
+                    <i class="fa-solid fa-chart-line"></i>
+                </span>
+                <span>Shiva<span class="green-text">.Trade</span></span>
+            </a>
+
+            <div class="sidebar-label">TRADING WORKSPACE</div>
+
+            <nav class="sidebar-nav">
+                <a href="#overview" class="nav-link active">
+                    <i class="fa-solid fa-house"></i>
+                    Overview
+                </a>
+
+                <a href="#patterns" class="nav-link">
+                    <i class="fa-solid fa-chart-column"></i>
+                    Candlestick Patterns
+                </a>
+
+                <a href="#levels" class="nav-link">
+                    <i class="fa-solid fa-grip-lines"></i>
+                    Support & Resistance
+                </a>
+
+                <a href="#journal" class="nav-link">
+                    <i class="fa-solid fa-book"></i>
+                    Pattern Journal
+                </a>
+            </nav>
+
+            <div class="sidebar-bottom">
+                <div class="status-dot"></div>
+                <span>Personal Trading Hub</span>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+
+            <!-- Topbar -->
+            <header class="topbar">
+                <div>
+                    <p class="eyebrow">YOUR TRADING WORKSPACE</p>
+                    <h1>Price Action <span class="green-text">& Candlesticks</span></h1>
+                </div>
+
+                <a href="index.html" class="back-button">
+                    <i class="fa-solid fa-arrow-left"></i>
+                    Portfolio
+                </a>
+            </header>
+
+            <!-- Overview -->
+            <section id="overview" class="hero-card">
+                <div class="hero-content">
+                    <span class="badge">
+                        <i class="fa-solid fa-chart-simple"></i>
+                        MARKET STUDY
+                    </span>
+
+                    <h2>Read the market.<br>
+                        <span class="green-text">Understand the price.</span>
+                    </h2>
+
+                    <p>
+                        Build your understanding of candlestick patterns,
+                        market structure, support, resistance, and price action.
+                        Record your observations and learn from past setups.
+                    </p>
+
+                    <a href="#patterns" class="primary-button">
+                        Explore Patterns
+                        <i class="fa-solid fa-arrow-down"></i>
+                    </a>
+                </div>
+
+                <div class="candle-illustration" aria-label="Decorative candlestick illustration">
+                    <div class="candle candle-one">
+                        <span class="wick"></span>
+                        <span class="body"></span>
+                    </div>
+
+                    <div class="candle candle-two bearish">
+                        <span class="wick"></span>
+                        <span class="body"></span>
+                    </div>
+
+                    <div class="candle candle-three">
+                        <span class="wick"></span>
+                        <span class="body"></span>
+                    </div>
+
+                    <div class="candle candle-four bearish">
+                        <span class="wick"></span>
+                        <span class="body"></span>
+                    </div>
+
+                    <div class="candle candle-five">
+                        <span class="wick"></span>
+                        <span class="body"></span>
+                    </div>
+
+                    <div class="chart-caption">
+                        <span>PRICE ACTION</span>
+                        <span>LEARN · OBSERVE · RECORD</span>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Statistics -->
+            <section class="stats-grid">
+
+                <article class="stat-card">
+                    <div class="stat-icon green-icon">
+                        <i class="fa-solid fa-layer-group"></i>
+                    </div>
+                    <p>Patterns Available</p>
+                    <h3 id="patternCount">8</h3>
+                    <span class="stat-caption">In your study library</span>
+                </article>
+
+                <article class="stat-card">
+                    <div class="stat-icon blue-icon">
+                        <i class="fa-solid fa-book-open"></i>
+                    </div>
+                    <p>Journal Entries</p>
+                    <h3 id="journalCount">0</h3>
+                    <span class="stat-caption">Your recorded observations</span>
+                </article>
+
+                <article class="stat-card">
+                    <div class="stat-icon purple-icon">
+                        <i class="fa-solid fa-bullseye"></i>
+                    </div>
+                    <p>Levels Recorded</p>
+                    <h3 id="levelCount">0</h3>
+                    <span class="stat-caption">Support and resistance notes</span>
+                </article>
+
+                <article class="stat-card">
+                    <div class="stat-icon orange-icon">
+                        <i class="fa-solid fa-calendar-check"></i>
+                    </div>
+                    <p>Study Activity</p>
+                    <h3 id="studyDays">0</h3>
+                    <span class="stat-caption">Different days with entries</span>
+                </article>
+
+            </section>
+
+            <!-- Candlestick Patterns -->
+            <section id="patterns" class="content-section">
+
+                <div class="section-heading">
+                    <div>
+                        <p class="eyebrow">LEARN THE BASICS</p>
+                        <h2>Candlestick Pattern Library</h2>
+                        <p class="section-description">
+                            Study common patterns and understand their possible market meaning.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Search and Filters -->
+                <div class="filter-bar">
+                    <div class="search-box">
+                        <i class="fa-solid fa-magnifying-glass"></i>
+                        <input
+                            type="search"
+                            id="patternSearch"
+                            placeholder="Search patterns..."
+                            aria-label="Search candlestick patterns"
+                        >
+                    </div>
+
+                    <select id="patternFilter" aria-label="Filter patterns">
+                        <option value="all">All Patterns</option>
+                        <option value="bullish">Bullish</option>
+                        <option value="bearish">Bearish</option>
+                        <option value="neutral">Neutral</option>
+                    </select>
+                </div>
+
+                <div id="patternGrid" class="pattern-grid">
+                    <!-- Pattern cards are added by JavaScript -->
+                </div>
+
+                <p class="disclaimer">
+                    <i class="fa-solid fa-circle-info"></i>
+                    Patterns are not guarantees. Context, trend, volume, and confirmation matter.
+                </p>
+
+            </section>
+
+            <!-- Support and Resistance -->
+            <section id="levels" class="content-section">
+
+                <div class="section-heading">
+                    <div>
+                        <p class="eyebrow">MARKET STRUCTURE</p>
+                        <h2>Support & Resistance Notes</h2>
+                        <p class="section-description">
+                            Record important price levels and the reasoning behind them.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="two-column-layout">
+
+                    <form id="levelForm" class="panel">
+                        <h3>
+                            <i class="fa-solid fa-plus-circle green-text"></i>
+                            Add a Price Level
+                        </h3>
+
+                        <label for="levelSymbol">Stock / Asset</label>
+                        <input
+                            type="text"
+                            id="levelSymbol"
+                            placeholder="e.g. NIFTY 50, RELIANCE, BTC"
+                            required
+                        >
+
+                        <label for="levelType">Level Type</label>
+                        <select id="levelType" required>
+                            <option value="Support">Support</option>
+                            <option value="Resistance">Resistance</option>
+                        </select>
+
+                        <label for="levelPrice">Price</label>
+                        <input
+                            type="number"
+                            id="levelPrice"
+                            min="0.01"
+                            step="any"
+                            placeholder="Enter price"
+                            required
+                        >
+
+                        <label for="levelTimeframe">Timeframe</label>
+                        <select id="levelTimeframe">
+                            <option>5 minutes</option>
+                            <option>15 minutes</option>
+                            <option>1 hour</option>
+                            <option>4 hours</option>
+                            <option selected>Daily</option>
+                            <option>Weekly</option>
+                            <option>Monthly</option>
+                        </select>
+
+                        <label for="levelNotes">Reason / Observation</label>
+                        <textarea
+                            id="levelNotes"
+                            rows="3"
+                            placeholder="Why is this level important?"
+                        ></textarea>
+
+                        <button type="submit" class="primary-button full-width">
+                            <i class="fa-solid fa-floppy-disk"></i>
+                            Save Price Level
+                        </button>
+                    </form>
+
+                    <div class="panel">
+                        <div class="panel-title-row">
+                            <h3>Saved Levels</h3>
+                            <span class="count-pill" id="savedLevelBadge">0 saved</span>
+                        </div>
+
+                        <div id="levelsList" class="saved-list">
+                            <div class="empty-state">
+                                <i class="fa-solid fa-grip-lines"></i>
+                                <p>No price levels saved yet.</p>
+                                <span>Add your first support or resistance level.</span>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </section>
+
+            <!-- Pattern Journal -->
+            <section id="journal" class="content-section">
+
+                <div class="section-heading">
+                    <div>
+                        <p class="eyebrow">YOUR LEARNING LOG</p>
+                        <h2>Pattern Journal</h2>
+                        <p class="section-description">
+                            Record what you observed, what happened next, and what you learned.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="two-column-layout">
+
+                    <form id="journalForm" class="panel">
+
+                        <h3>
+                            <i class="fa-solid fa-pen-to-square green-text"></i>
+                            New Journal Entry
+                        </h3>
+
+                        <label for="journalDate">Date</label>
+                        <input type="date" id="journalDate" required>
+
+                        <label for="journalSymbol">Stock / Asset</label>
+                        <input
+                            type="text"
+                            id="journalSymbol"
+                            placeholder="e.g. NIFTY 50"
+                            required
+                        >
+
+                        <label for="journalPattern">Pattern Observed</label>
+                        <select id="journalPattern" required>
+                            <option value="">Select a pattern</option>
+                            <option>Doji</option>
+                            <option>Hammer</option>
+                            <option>Shooting Star</option>
+                            <option>Bullish Engulfing</option>
+                            <option>Bearish Engulfing</option>
+                            <option>Morning Star</option>
+                            <option>Evening Star</option>
+                            <option>Marubozu</option>
+                            <option>Other</option>
+                        </select>
+
+                        <label for="journalBias">Observed Bias</label>
+                        <select id="journalBias" required>
+                            <option value="Bullish">Bullish</option>
+                            <option value="Bearish">Bearish</option>
+                            <option value="Neutral">Neutral / Unclear</option>
+                        </select>
+
+                        <label for="journalObservation">What did you observe?</label>
+                        <textarea
+                            id="journalObservation"
+                            rows="3"
+                            placeholder="Describe the trend, pattern, and surrounding price action..."
+                            required
+                        ></textarea>
+
+                        <label for="journalOutcome">What happened afterward?</label>
+                        <textarea
+                            id="journalOutcome"
+                            rows="2"
+                            placeholder="Record the later price movement or lesson learned..."
+                        ></textarea>
+
+                        <button type="submit" class="primary-button full-width">
+                            <i class="fa-solid fa-plus"></i>
+                            Save Journal Entry
+                        </button>
+
+                    </form>
+
+                    <div class="panel">
+                        <div class="panel-title-row">
+                            <h3>Journal History</h3>
+
+                            <button
+                                type="button"
+                                id="exportJournal"
+                                class="secondary-button"
+                            >
+                                <i class="fa-solid fa-download"></i>
+                                Export CSV
+                            </button>
+                        </div>
+
+                        <div id="journalList" class="saved-list">
+                            <div class="empty-state">
+                                <i class="fa-solid fa-book-open"></i>
+                                <p>Your journal is empty.</p>
+                                <span>Save an observation to start tracking your learning.</span>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </section>
+
+            <!-- Footer -->
+            <footer class="footer">
+                <p>Built for learning and consistency.</p>
+                <p>Shiva's Trading Hub <span class="green-text">© 2026</span></p>
+            </footer>
+
+        </main>
+    </div>
+
+    <div id="toast" class="toast" role="status" aria-live="polite"></div>
+
+    <script src="price-action.js"></script>
+</body>
+</html>

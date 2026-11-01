@@ -1,0 +1,589 @@
+:root {
+    --tp-bg: #07110e;
+    --tp-panel: #0d1b16;
+    --tp-card: #10231b;
+    --tp-border: #1d3b2d;
+    --tp-green: #10b981;
+    --tp-green-light: #34d399;
+    --tp-text: #ecfdf5;
+    --tp-muted: #9ab5a6;
+    --tp-danger: #fb7185;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    margin: 0;
+    background: var(--tp-bg);
+    color: var(--tp-text);
+    font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    line-height: 1.6;
+}
+
+.psych-dashboard {
+    min-height: 100vh;
+}
+
+.psych-dashboard a {
+    color: inherit;
+    text-decoration: none;
+}
+
+.psych-sidebar {
+    position: fixed;
+    inset: 0 auto 0 0;
+    z-index: 10;
+    display: flex;
+    flex-direction: column;
+    width: 245px;
+    padding: 28px 18px;
+    background: var(--tp-panel);
+    border-right: 1px solid var(--tp-border);
+}
+
+.psych-brand {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 45px;
+    font-size: 1.25rem;
+    font-weight: 750;
+}
+
+.brand-icon {
+    display: grid;
+    place-items: center;
+    width: 40px;
+    height: 40px;
+    border-radius: 12px;
+    background: var(--tp-green);
+    color: #04130c;
+}
+
+.accent {
+    color: var(--tp-green-light);
+}
+
+.sidebar-label,
+.eyebrow {
+    margin: 0 0 10px;
+    color: var(--tp-green-light);
+    font-size: 0.73rem;
+    font-weight: 750;
+    letter-spacing: 1.5px;
+}
+
+.sidebar-nav {
+    display: grid;
+    gap: 8px;
+}
+
+.sidebar-nav a {
+    padding: 11px 12px;
+    color: var(--tp-muted);
+    border: 1px solid transparent;
+    border-radius: 9px;
+    transition: 0.2s ease;
+}
+
+.sidebar-nav a:hover,
+.sidebar-nav a.active {
+    color: var(--tp-green-light);
+    background: rgb(16 185 129 / 10%);
+    border-color: var(--tp-border);
+}
+
+.sidebar-reminder {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    margin-top: auto;
+    padding: 14px;
+    color: var(--tp-muted);
+    background: var(--tp-card);
+    border: 1px solid var(--tp-border);
+    border-radius: 12px;
+    font-size: 0.85rem;
+}
+
+.sidebar-reminder p {
+    margin: 0;
+}
+
+.reminder-dot {
+    flex: 0 0 8px;
+    width: 8px;
+    height: 8px;
+    margin-top: 7px;
+    border-radius: 50%;
+    background: var(--tp-green);
+}
+
+.psych-main {
+    width: calc(100% - 245px);
+    max-width: 1750px;
+    margin-left: 245px;
+    padding: 38px clamp(20px, 4vw, 56px);
+}
+
+.page-header,
+.section-heading {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+}
+
+.page-header {
+    margin-bottom: 30px;
+}
+
+.page-header h1 {
+    margin: 0;
+    font-size: clamp(2rem, 4vw, 3rem);
+    letter-spacing: -1.5px;
+    line-height: 1.15;
+}
+
+.subtitle,
+.section-description {
+    max-width: 780px;
+    color: var(--tp-muted);
+}
+
+.header-badge,
+.badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 12px;
+    color: var(--tp-green-light);
+    background: rgb(16 185 129 / 9%);
+    border: 1px solid var(--tp-border);
+    border-radius: 999px;
+    font-size: 0.8rem;
+    white-space: nowrap;
+}
+
+.header-badge .reminder-dot {
+    margin-top: 0;
+}
+
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 16px;
+    margin-bottom: 22px;
+}
+
+.stat-card,
+.panel {
+    min-width: 0;
+    padding: 24px;
+    background: var(--tp-panel);
+    border: 1px solid var(--tp-border);
+    border-radius: 16px;
+}
+
+.stat-card {
+    display: flex;
+    flex-direction: column;
+    gap: 7px;
+    padding: 20px;
+}
+
+.stat-label,
+.stat-foot {
+    color: var(--tp-muted);
+    font-size: 0.83rem;
+}
+
+.stat-card strong {
+    overflow-wrap: anywhere;
+    font-size: clamp(1.2rem, 2vw, 1.8rem);
+}
+
+.stat-foot {
+    font-size: 0.76rem;
+}
+
+.panel {
+    margin-bottom: 22px;
+}
+
+.section-heading {
+    margin-bottom: 12px;
+}
+
+.section-heading h2 {
+    margin: 0;
+    font-size: 1.35rem;
+}
+
+.form-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 18px;
+    margin-top: 22px;
+}
+
+.form-grid label,
+.notes-label {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    color: var(--tp-text);
+    font-size: 0.9rem;
+    font-weight: 600;
+}
+
+.form-grid input,
+.form-grid select,
+.form-grid textarea,
+#personalNotes {
+    width: 100%;
+    min-width: 0;
+    padding: 12px 13px;
+    color: var(--tp-text);
+    background: #091610;
+    border: 1px solid var(--tp-border);
+    border-radius: 9px;
+    font: inherit;
+}
+
+.form-grid input:focus,
+.form-grid select:focus,
+.form-grid textarea:focus,
+#personalNotes:focus {
+    outline: 2px solid var(--tp-green);
+    outline-offset: 2px;
+    border-color: var(--tp-green);
+}
+
+.form-grid input::placeholder,
+.form-grid textarea::placeholder,
+#personalNotes::placeholder {
+    color: #789687;
+}
+
+.form-grid select {
+    cursor: pointer;
+}
+
+.full-width {
+    grid-column: 1 / -1;
+}
+
+.button-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-top: 20px;
+}
+
+.psych-dashboard button {
+    padding: 11px 16px;
+    color: #04130c;
+    background: var(--tp-green);
+    border: 1px solid var(--tp-green);
+    border-radius: 9px;
+    font: inherit;
+    font-weight: 700;
+    cursor: pointer;
+    transition: 0.2s ease;
+}
+
+.psych-dashboard button:hover {
+    background: var(--tp-green-light);
+    border-color: var(--tp-green-light);
+}
+
+.psych-dashboard button:focus-visible,
+.psych-dashboard a:focus-visible {
+    outline: 2px solid var(--tp-green-light);
+    outline-offset: 3px;
+}
+
+.psych-dashboard button.secondary-btn {
+    color: var(--tp-text);
+    background: transparent;
+    border-color: var(--tp-border);
+}
+
+.psych-dashboard button.secondary-btn:hover {
+    background: var(--tp-card);
+    border-color: var(--tp-green);
+}
+
+.message {
+    min-height: 24px;
+    margin: 14px 0 0;
+    color: var(--tp-muted);
+    font-size: 0.88rem;
+}
+
+.message.error {
+    color: var(--tp-danger);
+}
+
+.message.success {
+    color: var(--tp-green-light);
+}
+
+.table-wrapper {
+    width: 100%;
+    margin-top: 24px;
+    overflow-x: auto;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    text-align: left;
+    font-size: 0.85rem;
+}
+
+th,
+td {
+    padding: 13px 12px;
+    border-bottom: 1px solid var(--tp-border);
+    vertical-align: top;
+}
+
+th {
+    color: var(--tp-green-light);
+    font-weight: 700;
+    white-space: nowrap;
+}
+
+td {
+    color: var(--tp-muted);
+}
+
+td button.delete-button {
+    padding: 6px 9px;
+    color: var(--tp-danger);
+    background: transparent;
+    border-color: var(--tp-border);
+    font-size: 0.8rem;
+}
+
+td button.delete-button:hover {
+    background: rgb(251 113 133 / 10%);
+    border-color: var(--tp-danger);
+}
+
+.empty-state {
+    padding: 20px 0;
+    color: var(--tp-muted);
+    text-align: center;
+}
+
+.journal-list {
+    display: grid;
+    gap: 14px;
+    margin-top: 24px;
+}
+
+.journal-card {
+    min-width: 0;
+    padding: 18px;
+    background: var(--tp-card);
+    border: 1px solid var(--tp-border);
+    border-radius: 12px;
+}
+
+.journal-card h3 {
+    margin: 0;
+    font-size: 1rem;
+    overflow-wrap: anywhere;
+}
+
+.journal-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin: 10px 0;
+}
+
+.journal-meta span {
+    padding: 4px 9px;
+    color: var(--tp-green-light);
+    background: rgb(16 185 129 / 9%);
+    border: 1px solid var(--tp-border);
+    border-radius: 999px;
+    font-size: 0.76rem;
+}
+
+.journal-card p {
+    color: var(--tp-muted);
+    overflow-wrap: anywhere;
+    white-space: pre-wrap;
+}
+
+.journal-card .delete-button {
+    margin-top: 8px;
+}
+
+.checklist {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 12px;
+    margin: 22px 0;
+}
+
+.check-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    padding: 16px;
+    background: var(--tp-card);
+    border: 1px solid var(--tp-border);
+    border-radius: 12px;
+    cursor: pointer;
+}
+
+.check-item input {
+    flex: 0 0 auto;
+    width: 17px;
+    height: 17px;
+    margin-top: 4px;
+    accent-color: var(--tp-green);
+}
+
+.check-item span {
+    display: grid;
+    gap: 5px;
+}
+
+.check-item strong {
+    font-size: 0.9rem;
+}
+
+.check-item small {
+    color: var(--tp-muted);
+    font-size: 0.8rem;
+}
+
+.notes-label {
+    margin: 20px 0 10px;
+}
+
+#personalNotes {
+    display: block;
+    resize: vertical;
+}
+
+.page-footer {
+    padding: 20px 0;
+    color: var(--tp-muted);
+    font-size: 0.82rem;
+}
+
+.page-footer p {
+    margin: 5px 0;
+}
+
+@media (max-width: 1150px) {
+    .psych-sidebar {
+        width: 210px;
+    }
+
+    .psych-main {
+        width: calc(100% - 210px);
+        margin-left: 210px;
+        padding: 28px 22px;
+    }
+
+    .stats-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .form-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+@media (max-width: 760px) {
+    .psych-sidebar {
+        position: static;
+        width: 100%;
+        padding: 16px;
+        border-right: 0;
+        border-bottom: 1px solid var(--tp-border);
+    }
+
+    .psych-brand {
+        margin-bottom: 20px;
+    }
+
+    .sidebar-label,
+    .sidebar-reminder {
+        display: none;
+    }
+
+    .sidebar-nav {
+        display: flex;
+        gap: 7px;
+        overflow-x: auto;
+        padding-bottom: 4px;
+    }
+
+    .sidebar-nav a {
+        flex: 0 0 auto;
+        font-size: 0.85rem;
+    }
+
+    .psych-main {
+        width: 100%;
+        margin: 0;
+        padding: 24px 16px;
+    }
+
+    .page-header {
+        align-items: flex-start;
+        flex-direction: column;
+    }
+
+    .header-badge {
+        white-space: normal;
+    }
+
+    .panel {
+        padding: 18px;
+    }
+
+    .section-heading {
+        align-items: flex-start;
+        flex-direction: column;
+    }
+
+    .checklist {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 480px) {
+    .form-grid,
+    .stats-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .full-width {
+        grid-column: auto;
+    }
+
+    .page-header h1 {
+        font-size: 2rem;
+    }
+
+    .button-row > button {
+        flex: 1 1 100%;
+    }
+}

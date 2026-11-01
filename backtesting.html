@@ -1,0 +1,380 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Backtesting & Practice | My Portfolio</title>
+
+    <link rel="stylesheet" href="backtesting.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="backtesting.js" defer></script>
+</head>
+<body>
+<div class="app-layout">
+
+    <aside class="sidebar">
+        <a href="index.html" class="brand">
+            <span class="brand-icon">◆</span>
+            <span>My<span class="green">World</span></span>
+        </a>
+
+        <p class="sidebar-label">PRACTICE WORKSPACE</p>
+
+        <nav>
+            <a class="nav-link active" href="#overview">▦ Overview</a>
+            <a class="nav-link" href="#strategy">⚙ Strategy Setup</a>
+            <a class="nav-link" href="#add-trade">＋ Record Practice Trade</a>
+            <a class="nav-link" href="#history">☷ Trade History</a>
+            <a class="nav-link" href="#analytics">↗ Analytics</a>
+            <a class="nav-link" href="#notes">✎ Practice Notes</a>
+        </nav>
+
+        <div class="sidebar-bottom">
+            <span class="storage-status"><span class="status-dot"></span> Saved in this browser</span>
+            <a href="index.html" class="back-link">← Back to Portfolio</a>
+        </div>
+    </aside>
+
+    <main class="main-content">
+
+        <header class="page-header">
+            <div>
+                <p class="eyebrow">TRADING WORKSPACE / SIMULATION</p>
+                <h1>Backtesting <span class="green">& Practice</span></h1>
+                <p class="muted">Test your ideas. Measure your results. Refine your process.</p>
+            </div>
+            <div class="header-badge"><span class="status-dot"></span> Practice Mode</div>
+        </header>
+
+        <div class="notice">
+            <strong>Simulation only:</strong>
+            Results are hypothetical and depend on the historical prices and trade details
+            you enter. They do not predict future performance.
+        </div>
+
+        <!-- OVERVIEW -->
+        <section id="overview" class="section">
+            <div class="section-heading">
+                <div>
+                    <h2>Performance Overview</h2>
+                    <p class="muted">Results for the currently selected strategy.</p>
+                </div>
+            </div>
+
+            <div class="stats-grid">
+                <article class="stat-card">
+                    <span class="stat-label">PRACTICE TRADES</span>
+                    <strong class="stat-value" id="total-trades">0</strong>
+                    <span class="stat-caption">Recorded simulations</span>
+                </article>
+                <article class="stat-card">
+                    <span class="stat-label">WIN RATE</span>
+                    <strong class="stat-value green" id="win-rate">0%</strong>
+                    <span class="stat-caption" id="win-caption">0 wins · 0 losses</span>
+                </article>
+                <article class="stat-card">
+                    <span class="stat-label">NET P&L</span>
+                    <strong class="stat-value" id="net-pnl">₹0.00</strong>
+                    <span class="stat-caption">After entered fees</span>
+                </article>
+                <article class="stat-card">
+                    <span class="stat-label">PROFIT FACTOR</span>
+                    <strong class="stat-value" id="profit-factor">—</strong>
+                    <span class="stat-caption">Gross wins / gross losses</span>
+                </article>
+            </div>
+        </section>
+
+        <!-- STRATEGY SETUP -->
+        <section id="strategy" class="section">
+            <div class="section-heading">
+                <div>
+                    <h2>Strategy Setup</h2>
+                    <p class="muted">Keep each experiment tied to a defined set of rules.</p>
+                </div>
+            </div>
+
+            <form id="strategy-form" class="panel form-grid">
+                <div class="field">
+                    <label for="strategy-name">Experiment Name *</label>
+                    <input id="strategy-name" maxlength="80" required
+                           placeholder="e.g. NIFTY Breakout Test">
+                </div>
+
+                <div class="field">
+                    <label for="market">Market / Instrument</label>
+                    <input id="market" maxlength="60" placeholder="e.g. NIFTY 50">
+                </div>
+
+                <div class="field">
+                    <label for="timeframe">Timeframe</label>
+                    <select id="timeframe">
+                        <option>1 minute</option>
+                        <option>5 minutes</option>
+                        <option>15 minutes</option>
+                        <option>30 minutes</option>
+                        <option>1 hour</option>
+                        <option>4 hours</option>
+                        <option>Daily</option>
+                        <option>Weekly</option>
+                    </select>
+                </div>
+
+                <div class="field">
+                    <label for="strategy-type">Strategy Type</label>
+                    <select id="strategy-type">
+                        <option>Price Action</option>
+                        <option>Breakout</option>
+                        <option>Pullback</option>
+                        <option>Trend Following</option>
+                        <option>Support / Resistance</option>
+                        <option>Candlestick Pattern</option>
+                        <option>Other</option>
+                    </select>
+                </div>
+
+                <div class="field">
+                    <label for="start-date">Test Start Date</label>
+                    <input id="start-date" type="date">
+                </div>
+
+                <div class="field">
+                    <label for="end-date">Test End Date</label>
+                    <input id="end-date" type="date">
+                </div>
+
+                <div class="field full">
+                    <label for="strategy-rules">Entry, Exit & Risk Rules</label>
+                    <textarea id="strategy-rules" rows="3" maxlength="3000"
+                              placeholder="Define entry confirmation, stop-loss, target, position sizing, and exit rules..."></textarea>
+                </div>
+
+                <div class="form-actions full">
+                    <button class="btn-secondary" type="button" id="new-experiment">
+                        New Experiment
+                    </button>
+                    <button class="btn-primary" type="submit">Save Strategy</button>
+                </div>
+
+                <p class="muted full" id="strategy-status" aria-live="polite">
+                    No strategy saved yet.
+                </p>
+            </form>
+        </section>
+
+        <!-- ADD PRACTICE TRADE -->
+        <section id="add-trade" class="section">
+            <div class="section-heading">
+                <div>
+                    <h2>Record Practice Trade</h2>
+                    <p class="muted">Enter a hypothetical trade from the historical period you're testing.</p>
+                </div>
+                <span class="tag">SIMULATED</span>
+            </div>
+
+            <form id="trade-form" class="panel">
+                <div class="form-grid">
+                    <div class="field">
+                        <label for="trade-date">Trade Date *</label>
+                        <input id="trade-date" type="date" required>
+                    </div>
+
+                    <div class="field">
+                        <label for="trade-symbol">Instrument *</label>
+                        <input id="trade-symbol" maxlength="40" required
+                               placeholder="e.g. NIFTY, RELIANCE">
+                    </div>
+
+                    <div class="field">
+                        <label for="direction">Direction *</label>
+                        <select id="direction">
+                            <option value="Long">Long / Buy</option>
+                            <option value="Short">Short / Sell</option>
+                        </select>
+                    </div>
+
+                    <div class="field">
+                        <label for="trade-setup">Setup</label>
+                        <input id="trade-setup" maxlength="120"
+                               placeholder="e.g. Resistance breakout">
+                    </div>
+
+                    <div class="field">
+                        <label for="entry-price">Entry Price *</label>
+                        <input id="entry-price" type="number" min="0.00000001"
+                               step="any" required placeholder="0.00">
+                    </div>
+
+                    <div class="field">
+                        <label for="exit-price">Exit Price *</label>
+                        <input id="exit-price" type="number" min="0.00000001"
+                               step="any" required placeholder="0.00">
+                    </div>
+
+                    <div class="field">
+                        <label for="quantity">Quantity *</label>
+                        <input id="quantity" type="number" min="0.00000001"
+                               step="any" required placeholder="1">
+                    </div>
+
+                    <div class="field">
+                        <label for="fees">Estimated Fees & Charges</label>
+                        <input id="fees" type="number" min="0" step="any" value="0">
+                    </div>
+
+                    <div class="field">
+                        <label for="stop-loss">Planned Stop-Loss Price</label>
+                        <input id="stop-loss" type="number" min="0" step="any"
+                               placeholder="Optional">
+                    </div>
+
+                    <div class="field">
+                        <label for="target-price">Planned Target Price</label>
+                        <input id="target-price" type="number" min="0" step="any"
+                               placeholder="Optional">
+                    </div>
+
+                    <div class="field full">
+                        <label for="trade-notes">Observation / Lesson</label>
+                        <textarea id="trade-notes" rows="3" maxlength="2000"
+                                  placeholder="What did you observe? Did the setup follow your rules?"></textarea>
+                    </div>
+                </div>
+
+                <div class="preview">
+                    <div>
+                        <span class="stat-label">HYPOTHETICAL NET P&L</span>
+                        <strong id="preview-pnl" class="preview-value">₹0.00</strong>
+                    </div>
+                    <p class="muted">Uses entry, exit, quantity and fees entered above.</p>
+                </div>
+
+                <div class="form-actions">
+                    <button type="reset" class="btn-secondary">Clear Form</button>
+                    <button type="submit" class="btn-primary">＋ Save Practice Trade</button>
+                </div>
+            </form>
+        </section>
+
+        <!-- TRADE HISTORY -->
+        <section id="history" class="section">
+            <div class="section-heading">
+                <div>
+                    <h2>Practice Trade History</h2>
+                    <p class="muted">Review individual results from your experiment.</p>
+                </div>
+            </div>
+
+            <div class="panel filters">
+                <div class="field">
+                    <label for="search">Search</label>
+                    <input id="search" type="search" placeholder="Symbol or setup...">
+                </div>
+                <div class="field">
+                    <label for="filter-direction">Direction</label>
+                    <select id="filter-direction">
+                        <option value="all">All</option>
+                        <option value="Long">Long</option>
+                        <option value="Short">Short</option>
+                    </select>
+                </div>
+                <div class="field">
+                    <label for="filter-result">Result</label>
+                    <select id="filter-result">
+                        <option value="all">All</option>
+                        <option value="win">Wins</option>
+                        <option value="loss">Losses</option>
+                        <option value="breakeven">Breakeven</option>
+                    </select>
+                </div>
+                <button type="button" class="btn-secondary" id="export-csv">↓ Export CSV</button>
+            </div>
+
+            <div class="panel table-panel">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Date</th>
+                            <th>Symbol</th>
+                            <th>Direction</th>
+                            <th>Entry</th>
+                            <th>Exit</th>
+                            <th>Qty</th>
+                            <th>Net P&L</th>
+                            <th>Result</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody id="trade-table-body"></tbody>
+                </table>
+
+                <div id="empty-state" class="empty-state">
+                    <div class="empty-icon">↗</div>
+                    <h3>No practice trades yet</h3>
+                    <p>Save your first simulated trade to see your results here.</p>
+                </div>
+            </div>
+
+            <p class="muted table-caption" id="trade-count">Showing 0 trades</p>
+        </section>
+
+        <!-- ANALYTICS -->
+        <section id="analytics" class="section">
+            <div class="section-heading">
+                <div>
+                    <h2>Experiment Analytics</h2>
+                    <p class="muted">Evaluate your recorded hypothetical results.</p>
+                </div>
+            </div>
+
+            <div class="analytics-grid">
+                <article class="panel chart-panel">
+                    <h3>Cumulative Net P&L</h3>
+                    <p class="muted">Daily cumulative result based on recorded trades.</p>
+                    <div class="chart-wrap">
+                        <canvas id="pnl-chart"></canvas>
+                    </div>
+                </article>
+
+                <article class="panel metrics-panel">
+                    <h3>Performance Metrics</h3>
+                    <div class="metric-row"><span>Winning Trades</span><strong id="wins">0</strong></div>
+                    <div class="metric-row"><span>Losing Trades</span><strong id="losses">0</strong></div>
+                    <div class="metric-row"><span>Average Win</span><strong id="avg-win">₹0.00</strong></div>
+                    <div class="metric-row"><span>Average Loss</span><strong id="avg-loss">₹0.00</strong></div>
+                    <div class="metric-row"><span>Largest Win</span><strong id="largest-win">₹0.00</strong></div>
+                    <div class="metric-row"><span>Largest Loss</span><strong id="largest-loss">₹0.00</strong></div>
+                    <div class="metric-row"><span>Average Net / Trade</span><strong id="avg-trade">₹0.00</strong></div>
+                </article>
+            </div>
+        </section>
+
+        <!-- NOTES -->
+        <section id="notes" class="section">
+            <div class="section-heading">
+                <div>
+                    <h2>Practice Notes</h2>
+                    <p class="muted">Record observations and possible improvements to your rules.</p>
+                </div>
+            </div>
+
+            <div class="panel notes-panel">
+                <label for="general-notes">Experiment conclusions and lessons</label>
+                <textarea id="general-notes" rows="6" maxlength="10000"
+                          placeholder="Which market conditions suit this strategy? What weaknesses did you notice? What should you test next?"></textarea>
+                <div class="notes-footer">
+                    <span id="notes-status" class="muted" aria-live="polite">Not saved yet</span>
+                    <button type="button" class="btn-primary" id="save-notes">Save Notes</button>
+                </div>
+            </div>
+        </section>
+
+        <footer class="footer">
+            <p>Practice patiently. Test consistently. Review objectively.</p>
+            <p>Hypothetical results do not guarantee future performance.</p>
+        </footer>
+    </main>
+</div>
+</body>
+</html>

@@ -1,0 +1,641 @@
+:root {
+  --bg: #080d0b;
+  --panel: #101a15;
+  --green: #39d98a;
+  --text: #f1f5f2;
+  --muted: #9baaa1;
+  --border: #26392d;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 25px;
+}
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  line-height: 1.6;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button,
+input,
+select {
+  font: inherit;
+}
+
+button {
+  cursor: pointer;
+}
+
+.sidebar {
+  position: fixed;
+  inset: 0 auto 0 0;
+  width: 245px;
+  padding: 28px 22px;
+  background: #0b120e;
+  border-right: 1px solid var(--border);
+  display: flex;
+  flex-direction: column;
+  z-index: 10;
+}
+
+.brand {
+  font-size: 22px;
+  font-weight: 850;
+  letter-spacing: 1px;
+}
+
+.brand span,
+h1 span {
+  color: var(--green);
+}
+
+.sidebar-label,
+.eyebrow {
+  color: var(--green);
+  font-size: 11px;
+  font-weight: 750;
+  letter-spacing: 1.8px;
+}
+
+.sidebar-label {
+  margin: 40px 0 15px;
+}
+
+.sidebar nav {
+  display: grid;
+  gap: 9px;
+}
+
+.nav-item {
+  padding: 12px;
+  border-radius: 7px;
+  color: var(--muted);
+  font-size: 14px;
+}
+
+.nav-item:hover,
+.nav-item.active {
+  color: var(--green);
+  background: #39d98a12;
+}
+
+.sidebar-bottom {
+  margin-top: auto;
+  display: grid;
+  gap: 12px;
+  font-size: 12px;
+  color: var(--muted);
+}
+
+.sidebar-bottom p {
+  color: var(--green);
+  letter-spacing: 1px;
+}
+
+.main-content {
+  max-width: 1600px;
+  margin-left: 245px;
+  padding: 38px;
+}
+
+.topbar,
+.section-heading {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px;
+}
+
+.topbar {
+  margin-bottom: 32px;
+}
+
+h1 {
+  font-size: clamp(30px, 4vw, 42px);
+  line-height: 1.2;
+  margin: 6px 0;
+}
+
+h2 {
+  font-size: 26px;
+}
+
+h3 {
+  font-size: 19px;
+}
+
+.muted {
+  color: var(--muted);
+  font-size: 13px;
+}
+
+.date-badge,
+.section-tag {
+  padding: 9px 12px;
+  border: 1px solid var(--border);
+  border-radius: 7px;
+  background: var(--panel);
+  color: var(--green);
+  font-size: 11px;
+}
+
+.section {
+  margin-bottom: 45px;
+}
+
+.eyebrow {
+  margin-bottom: 12px;
+}
+
+/* WELCOME */
+
+.welcome-card {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 25px;
+  padding: 32px;
+  border: 1px solid #31513c;
+  border-radius: 13px;
+  background: radial-gradient(circle at top right, #1a3926, #101a15 70%);
+}
+
+.welcome-card h2 {
+  font-size: 33px;
+  margin-bottom: 12px;
+}
+
+.welcome-card p:not(.eyebrow) {
+  color: var(--muted);
+  max-width: 500px;
+  font-size: 14px;
+}
+
+.welcome-icon {
+  font-size: 75px;
+}
+
+/* CALORIES */
+
+.calorie-card {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 25px;
+  margin-top: 18px;
+  padding: 25px;
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+}
+
+.card-label {
+  color: var(--muted);
+  font-size: 11px;
+  letter-spacing: 1px;
+}
+
+.calorie-card h2 {
+  font-size: 35px;
+  margin: 7px 0;
+}
+
+.calorie-card h2 small,
+.macro-card h3 small,
+.water-summary h3 small {
+  color: var(--muted);
+  font-size: 13px;
+  font-weight: 400;
+}
+
+.calorie-circle {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  background: conic-gradient(var(--green) 0%, #26352b 0%);
+  flex-shrink: 0;
+}
+
+.calorie-circle > div {
+  width: 94px;
+  height: 94px;
+  border-radius: 50%;
+  background: var(--panel);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.calorie-circle strong {
+  font-size: 24px;
+  color: var(--green);
+}
+
+.calorie-circle small {
+  color: var(--muted);
+  font-size: 10px;
+}
+
+/* MACROS */
+
+.macro-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 15px;
+  margin-top: 17px;
+}
+
+.macro-card {
+  padding: 21px;
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-radius: 11px;
+}
+
+.macro-heading {
+  display: flex;
+  justify-content: space-between;
+  gap: 8px;
+  font-size: 12px;
+}
+
+.macro-heading > span:last-child {
+  color: var(--green);
+}
+
+.macro-card h3 {
+  font-size: 28px;
+  margin: 10px 0;
+}
+
+.macro-card > p {
+  font-size: 11px;
+  color: var(--muted);
+}
+
+/* PROGRESS BARS */
+
+.progress-track {
+  height: 7px;
+  width: 100%;
+  margin: 12px 0;
+  background: #26352b;
+  border-radius: 20px;
+  overflow: hidden;
+}
+
+.progress-fill {
+  height: 100%;
+  width: 0;
+  background: var(--green);
+  border-radius: inherit;
+  transition: width 0.25s ease;
+}
+
+/* FORMS */
+
+.section-heading {
+  margin-bottom: 20px;
+}
+
+.meal-form,
+.goals-card,
+.water-card {
+  padding: 23px;
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-radius: 11px;
+}
+
+.form-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 16px;
+}
+
+label {
+  display: grid;
+  gap: 7px;
+  color: var(--muted);
+  font-size: 12px;
+}
+
+input,
+select {
+  width: 100%;
+  min-width: 0;
+  padding: 11px;
+  color: var(--text);
+  background: #0b120e;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  outline: none;
+}
+
+input:focus,
+select:focus {
+  border-color: var(--green);
+}
+
+input[type="date"] {
+  color-scheme: dark;
+}
+
+.primary-btn,
+.secondary-btn {
+  display: inline-block;
+  padding: 11px 15px;
+  border-radius: 6px;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.primary-btn {
+  margin-top: 20px;
+  color: #061009;
+  background: var(--green);
+  border: none;
+}
+
+.primary-btn:hover {
+  background: #68efac;
+}
+
+.secondary-btn {
+  color: var(--green);
+  background: transparent;
+  border: 1px solid var(--border);
+}
+
+.secondary-btn:hover {
+  border-color: var(--green);
+}
+
+.form-note {
+  color: var(--muted);
+  font-size: 11px;
+  margin-top: 12px;
+}
+
+/* MEALS */
+
+.meal-list {
+  display: grid;
+  gap: 11px;
+  margin-top: 17px;
+}
+
+.meal-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 15px;
+  padding: 17px;
+  border: 1px solid var(--border);
+  border-radius: 9px;
+  background: var(--panel);
+}
+
+.meal-item h3 {
+  font-size: 14px;
+}
+
+.meal-item p {
+  color: var(--muted);
+  font-size: 11px;
+  margin-top: 4px;
+}
+
+.meal-item strong {
+  font-size: 13px;
+  white-space: nowrap;
+}
+
+.meal-actions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.delete-btn {
+  padding: 7px 9px;
+  color: #ff9696;
+  background: transparent;
+  border: 1px solid #593535;
+  border-radius: 5px;
+  font-size: 11px;
+}
+
+.empty-state {
+  padding: 22px;
+  border: 1px dashed var(--border);
+  border-radius: 9px;
+  color: var(--muted);
+  font-size: 13px;
+}
+
+/* WATER */
+
+.water-summary {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.water-icon {
+  font-size: 40px;
+}
+
+.water-summary h3 {
+  font-size: 26px;
+}
+
+.water-track {
+  height: 10px;
+  margin: 22px 0 12px;
+}
+
+.water-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+/* GOALS */
+
+.goals-card {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 18px;
+}
+
+.goals-card .primary-btn,
+.goals-card .form-note {
+  align-self: end;
+}
+
+/* HISTORY */
+
+.history-description {
+  margin-bottom: 20px;
+}
+
+.history-controls {
+  display: flex;
+  align-items: end;
+  gap: 15px;
+  flex-wrap: wrap;
+}
+
+.history-controls label {
+  width: 220px;
+}
+
+.history-summary {
+  margin-top: 18px;
+  padding: 18px;
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-radius: 9px;
+  color: var(--muted);
+  font-size: 13px;
+}
+
+.history-summary strong {
+  color: var(--green);
+}
+
+/* FOOTER */
+
+footer {
+  border-top: 1px solid var(--border);
+  padding: 24px 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 15px;
+}
+
+footer p {
+  color: var(--muted);
+  font-size: 11px;
+}
+
+/* MOBILE */
+
+@media (max-width: 1050px) {
+  .sidebar {
+    width: 210px;
+  }
+
+  .main-content {
+    margin-left: 210px;
+    padding: 25px;
+  }
+
+  .form-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .macro-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 700px) {
+  .sidebar {
+    position: relative;
+    width: 100%;
+    padding: 18px;
+  }
+
+  .sidebar-label,
+  .sidebar nav,
+  .sidebar-bottom {
+    display: none;
+  }
+
+  .main-content {
+    margin-left: 0;
+    padding: 22px 16px;
+  }
+
+  .topbar,
+  .section-heading {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .welcome-card {
+    padding: 22px;
+  }
+
+  .welcome-card h2 {
+    font-size: 28px;
+  }
+
+  .welcome-icon {
+    display: none;
+  }
+
+  .calorie-card {
+    padding: 19px;
+  }
+
+  .calorie-circle {
+    width: 95px;
+    height: 95px;
+  }
+
+  .calorie-circle > div {
+    width: 75px;
+    height: 75px;
+  }
+
+  .calorie-circle strong {
+    font-size: 20px;
+  }
+
+  .form-grid,
+  .goals-card {
+    grid-template-columns: 1fr;
+  }
+
+  .meal-form,
+  .goals-card,
+  .water-card {
+    padding: 17px;
+  }
+
+  .meal-item {
+    align-items: flex-start;
+  }
+
+  .meal-actions {
+    flex-direction: column;
+    align-items: flex-end;
+  }
+
+  footer {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}

@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <meta name="description"
+        content="Track daily calories, protein, meals and hydration.">
+
+  <title>Nutrition & Diet | My World</title>
+
+  <link rel="stylesheet" href="nutrition.css">
+  <script src="nutrition.js" defer></script>
+</head>
+
+<body>
+
+  <!-- SIDEBAR -->
+  <aside class="sidebar">
+    <a href="index.html" class="brand">MY WORLD<span>.</span></a>
+
+    <p class="sidebar-label">FITNESS CENTER</p>
+
+    <nav>
+      <a href="#overview" class="nav-item active">▦ Overview</a>
+      <a href="#meals" class="nav-item">◷ Meal Tracker</a>
+      <a href="#water" class="nav-item">♧ Water Intake</a>
+      <a href="#goals" class="nav-item">◎ Daily Goals</a>
+      <a href="#history" class="nav-item">▤ Nutrition History</a>
+    </nav>
+
+    <div class="sidebar-bottom">
+      <p>FUEL YOUR PROGRESS.</p>
+      <a href="workout.html">← Workout Dashboard</a>
+      <a href="index.html">← Back to My World</a>
+    </div>
+  </aside>
+
+  <!-- MAIN CONTENT -->
+  <main class="main-content">
+
+    <header class="topbar">
+      <div>
+        <p class="eyebrow">FITNESS / NUTRITION</p>
+        <h1>Nutrition <span>Dashboard.</span></h1>
+        <p class="muted">Your food. Your goals. Your progress.</p>
+      </div>
+
+      <div class="date-badge" id="todayDate"></div>
+    </header>
+
+    <!-- OVERVIEW -->
+    <section id="overview" class="section">
+
+      <div class="welcome-card">
+        <div>
+          <p class="eyebrow">DAILY NUTRITION OVERVIEW</p>
+          <h2>Eat well.<br>Perform better.</h2>
+          <p>
+            Record your meals, understand your nutrition
+            and build consistent eating habits.
+          </p>
+        </div>
+
+        <div class="welcome-icon">🥗</div>
+      </div>
+
+      <!-- CALORIE CARD -->
+      <div class="calorie-card">
+        <div>
+          <p class="card-label">CALORIES CONSUMED</p>
+          <h2>
+            <span id="caloriesConsumed">0</span>
+            <small>kcal</small>
+          </h2>
+
+          <p class="muted">
+            Daily target:
+            <span id="calorieTargetLabel">2200</span> kcal
+          </p>
+        </div>
+
+        <div class="calorie-circle" id="calorieCircle">
+          <div>
+            <strong id="caloriePercent">0%</strong>
+            <small>of target</small>
+          </div>
+        </div>
+      </div>
+
+      <!-- MACROS -->
+      <div class="macro-grid">
+
+        <article class="macro-card">
+          <div class="macro-heading">
+            <span>🥩 Protein</span>
+            <span id="proteinPercent">0%</span>
+          </div>
+
+          <h3><span id="proteinConsumed">0</span><small> g</small></h3>
+
+          <div class="progress-track">
+            <div id="proteinBar" class="progress-fill"></div>
+          </div>
+
+          <p>Target: <span id="proteinTargetLabel">130</span> g</p>
+        </article>
+
+        <article class="macro-card">
+          <div class="macro-heading">
+            <span>🍚 Carbs</span>
+            <span id="carbsPercent">0%</span>
+          </div>
+
+          <h3><span id="carbsConsumed">0</span><small> g</small></h3>
+
+          <div class="progress-track">
+            <div id="carbsBar" class="progress-fill"></div>
+          </div>
+
+          <p>Target: <span id="carbsTargetLabel">250</span> g</p>
+        </article>
+
+        <article class="macro-card">
+          <div class="macro-heading">
+            <span>🥑 Fats</span>
+            <span id="fatPercent">0%</span>
+          </div>
+
+          <h3><span id="fatConsumed">0</span><small> g</small></h3>
+
+          <div class="progress-track">
+            <div id="fatBar" class="progress-fill"></div>
+          </div>
+
+          <p>Target: <span id="fatTargetLabel">70</span> g</p>
+        </article>
+
+      </div>
+    </section>
+
+    <!-- MEAL TRACKER -->
+    <section id="meals" class="section">
+
+      <div class="section-heading">
+        <div>
+          <p class="eyebrow">FOOD JOURNAL</p>
+          <h2>Today's Meals</h2>
+        </div>
+
+        <span class="section-tag" id="mealCount">0 ITEMS</span>
+      </div>
+
+      <form id="mealForm" class="meal-form">
+
+        <div class="form-grid">
+
+          <label>
+            Meal
+            <select id="mealType">
+              <option>Breakfast</option>
+              <option>Lunch</option>
+              <option>Dinner</option>
+              <option>Snack</option>
+            </select>
+          </label>
+
+          <label>
+            Food name
+            <input
+              id="foodName"
+              type="text"
+              placeholder="e.g. Eggs and toast"
+              maxlength="100"
+              required
+            >
+          </label>
+
+          <label>
+            Calories (kcal)
+            <input id="foodCalories" type="number"
+                   min="0" max="10000" step="1" required>
+          </label>
+
+          <label>
+            Protein (g)
+            <input id="foodProtein" type="number"
+                   min="0" max="1000" step="0.1" value="0" required>
+          </label>
+
+          <label>
+            Carbs (g)
+            <input id="foodCarbs" type="number"
+                   min="0" max="1000" step="0.1" value="0" required>
+          </label>
+
+          <label>
+            Fats (g)
+            <input id="foodFat" type="number"
+                   min="0" max="1000" step="0.1" value="0" required>
+          </label>
+
+        </div>
+
+        <button type="submit" class="primary-btn">
+          + Add Food
+        </button>
+
+        <p class="form-note">
+          Enter the nutrition values from your food label
+          or a reliable food database.
+        </p>
+
+      </form>
+
+      <div id="mealList" class="meal-list"></div>
+
+    </section>
+
+    <!-- WATER TRACKER -->
+    <section id="water" class="section">
+
+      <div class="section-heading">
+        <div>
+          <p class="eyebrow">DAILY HYDRATION</p>
+          <h2>Water Tracker</h2>
+        </div>
+
+        <span class="section-tag">HYDRATION</span>
+      </div>
+
+      <div class="water-card">
+
+        <div class="water-summary">
+          <span class="water-icon">💧</span>
+
+          <div>
+            <h3>
+              <span id="waterConsumed">0</span>
+              <small>ml consumed</small>
+            </h3>
+
+            <p class="muted">
+              Daily goal:
+              <span id="waterTargetLabel">2500</span> ml
+            </p>
+          </div>
+        </div>
+
+        <div class="progress-track water-track">
+          <div id="waterBar" class="progress-fill"></div>
+        </div>
+
+        <p id="waterMessage" class="muted">
+          Log a drink to start tracking your hydration.
+        </p>
+
+        <div class="water-buttons">
+          <button class="secondary-btn" data-water="150">+ 150 ml</button>
+          <button class="secondary-btn" data-water="250">+ 250 ml</button>
+          <button class="secondary-btn" data-water="500">+ 500 ml</button>
+          <button class="secondary-btn" id="resetWater">Reset water</button>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- GOALS -->
+    <section id="goals" class="section">
+
+      <div class="section-heading">
+        <div>
+          <p class="eyebrow">MAKE IT PERSONAL</p>
+          <h2>Daily Goals</h2>
+        </div>
+      </div>
+
+      <form id="goalsForm" class="goals-card">
+
+        <label>
+          Calories (kcal)
+          <input id="goalCalories" type="number"
+                 min="1" max="20000" required>
+        </label>
+
+        <label>
+          Protein (g)
+          <input id="goalProtein" type="number"
+                 min="1" max="1000" required>
+        </label>
+
+        <label>
+          Carbohydrates (g)
+          <input id="goalCarbs" type="number"
+                 min="1" max="2000" required>
+        </label>
+
+        <label>
+          Fats (g)
+          <input id="goalFat" type="number"
+                 min="1" max="1000" required>
+        </label>
+
+        <label>
+          Water (ml)
+          <input id="goalWater" type="number"
+                 min="1" max="10000" required>
+        </label>
+
+        <button type="submit" class="primary-btn">
+          Save Goals
+        </button>
+
+        <p id="goalMessage" class="form-note" aria-live="polite"></p>
+
+      </form>
+
+    </section>
+
+    <!-- HISTORY -->
+    <section id="history" class="section">
+
+      <div class="section-heading">
+        <div>
+          <p class="eyebrow">YOUR RECORDS</p>
+          <h2>Nutrition History</h2>
+        </div>
+
+        <button id="exportData" class="secondary-btn">
+          Export CSV ↗
+        </button>
+      </div>
+
+      <p class="muted history-description">
+        Your daily records are stored in this browser.
+        Select a date to review a previous day's log.
+      </p>
+
+      <div class="history-controls">
+        <label>
+          Choose date
+          <input id="historyDate" type="date">
+        </label>
+
+        <button id="viewToday" class="secondary-btn">
+          View Today
+        </button>
+      </div>
+
+      <div id="historySummary" class="history-summary"></div>
+
+      <div id="historyMeals" class="meal-list"></div>
+
+    </section>
+
+    <footer>
+      <a href="index.html" class="brand">MY WORLD<span>.</span></a>
+      <p>Fuel your body. Respect your progress.</p>
+    </footer>
+
+  </main>
+
+</body>
+</html>

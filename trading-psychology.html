@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Trading Psychology | Shiva</title>
+    <meta name="description"
+          content="Track trading emotions, reflect on decisions, and develop disciplined trading habits.">
+
+    <link rel="stylesheet" href="trading-psychology.css">
+</head>
+
+<body>
+<div class="psych-dashboard">
+
+    <aside class="psych-sidebar">
+        <a href="index.html" class="psych-brand">
+            <span class="brand-icon">S</span>
+            <span>Shiva<span class="accent">.</span></span>
+        </a>
+
+        <p class="sidebar-label">TRADING WORKSPACE</p>
+
+        <nav class="sidebar-nav">
+            <a href="index.html">← Back to Portfolio</a>
+            <a href="#overview" class="active">Overview</a>
+            <a href="#checkin">Daily Check-in</a>
+            <a href="#journal">Emotional Journal</a>
+            <a href="#mindset">Mindset Checklist</a>
+            <a href="#lessons">Lessons & Notes</a>
+        </nav>
+
+        <div class="sidebar-reminder">
+            <span class="reminder-dot"></span>
+            <p>Control your process, not the market.</p>
+        </div>
+    </aside>
+
+    <main class="psych-main">
+
+        <!-- HEADER -->
+        <header class="page-header" id="overview">
+            <div>
+                <p class="eyebrow">TRADING TOOLS / SELF-AWARENESS</p>
+                <h1>Trading Psychology<span class="accent">.</span></h1>
+                <p class="subtitle">
+                    Understand your emotions, review your decisions,
+                    and build a consistent trading routine.
+                </p>
+            </div>
+
+            <div class="header-badge">
+                <span class="reminder-dot"></span>
+                Discipline workspace
+            </div>
+        </header>
+
+        <!-- DAILY SUMMARY -->
+        <section class="stats-grid">
+            <article class="stat-card">
+                <span class="stat-label">Check-ins</span>
+                <strong id="statCheckins">0</strong>
+                <span class="stat-foot">Saved daily reflections</span>
+            </article>
+
+            <article class="stat-card">
+                <span class="stat-label">Average Focus</span>
+                <strong id="statFocus">—</strong>
+                <span class="stat-foot">Out of 5</span>
+            </article>
+
+            <article class="stat-card">
+                <span class="stat-label">Plan Followed</span>
+                <strong id="statDiscipline">—</strong>
+                <span class="stat-foot">Journal entries marked yes</span>
+            </article>
+
+            <article class="stat-card">
+                <span class="stat-label">Journal Entries</span>
+                <strong id="statEntries">0</strong>
+                <span class="stat-foot">Saved reflections</span>
+            </article>
+        </section>
+
+        <!-- DAILY CHECK-IN -->
+        <section class="panel" id="checkin">
+            <div class="section-heading">
+                <div>
+                    <p class="eyebrow">BEFORE YOUR SESSION</p>
+                    <h2>Daily Psychology Check-in</h2>
+                </div>
+                <span class="badge">Self-assessment</span>
+            </div>
+
+            <p class="section-description">
+                Pause before trading. Record how you feel rather than
+                how you think you should feel.
+            </p>
+
+            <form id="checkinForm">
+                <div class="form-grid">
+                    <label>
+                        Date
+                        <input type="date" id="checkinDate" required>
+                    </label>
+
+                    <label>
+                        Mood
+                        <select id="mood" required>
+                            <option value="Calm">Calm</option>
+                            <option value="Focused">Focused</option>
+                            <option value="Anxious">Anxious</option>
+                            <option value="Frustrated">Frustrated</option>
+                            <option value="Overexcited">Overexcited</option>
+                            <option value="Tired">Tired</option>
+                        </select>
+                    </label>
+
+                    <label>
+                        Focus (1–5)
+                        <select id="focusScore" required>
+                            <option value="1">1 — Very low</option>
+                            <option value="2">2 — Low</option>
+                            <option value="3" selected>3 — Moderate</option>
+                            <option value="4">4 — Good</option>
+                            <option value="5">5 — Excellent</option>
+                        </select>
+                    </label>
+
+                    <label>
+                        Stress (1–5)
+                        <select id="stressScore" required>
+                            <option value="1">1 — Very low</option>
+                            <option value="2">2 — Low</option>
+                            <option value="3" selected>3 — Moderate</option>
+                            <option value="4">4 — High</option>
+                            <option value="5">5 — Very high</option>
+                        </select>
+                    </label>
+
+                    <label>
+                        Confidence (1–5)
+                        <select id="confidenceScore" required>
+                            <option value="1">1 — Very low</option>
+                            <option value="2">2 — Low</option>
+                            <option value="3" selected>3 — Moderate</option>
+                            <option value="4">4 — High</option>
+                            <option value="5">5 — Very high</option>
+                        </select>
+                    </label>
+
+                    <label>
+                        Sleep quality (1–5)
+                        <select id="sleepScore" required>
+                            <option value="1">1 — Very poor</option>
+                            <option value="2">2 — Poor</option>
+                            <option value="3" selected>3 — Average</option>
+                            <option value="4">4 — Good</option>
+                            <option value="5">5 — Excellent</option>
+                        </select>
+                    </label>
+
+                    <label class="full-width">
+                        What is on your mind today?
+                        <textarea id="checkinNotes" rows="3" maxlength="1000"
+                                  placeholder="Distractions, expectations, concerns, or intentions..."></textarea>
+                    </label>
+                </div>
+
+                <div class="button-row">
+                    <button type="submit">Save Check-in</button>
+                    <button type="button" id="resetCheckin" class="secondary-btn">
+                        Clear Form
+                    </button>
+                </div>
+
+                <p id="checkinMessage" class="message" role="status" aria-live="polite"></p>
+            </form>
+
+            <div class="table-wrapper">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Date</th>
+                            <th>Mood</th>
+                            <th>Focus</th>
+                            <th>Stress</th>
+                            <th>Confidence</th>
+                            <th>Sleep</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody id="checkinTableBody"></tbody>
+                </table>
+            </div>
+
+            <p id="checkinEmpty" class="empty-state">
+                Your saved check-ins will appear here.
+            </p>
+        </section>
+
+        <!-- EMOTIONAL JOURNAL -->
+        <section class="panel" id="journal">
+            <div class="section-heading">
+                <div>
+                    <p class="eyebrow">DURING OR AFTER A TRADE</p>
+                    <h2>Emotional Trading Journal</h2>
+                </div>
+                <span class="badge">Behaviour review</span>
+            </div>
+
+            <form id="journalForm">
+                <div class="form-grid">
+                    <label>
+                        Date
+                        <input type="date" id="journalDate" required>
+                    </label>
+
+                    <label>
+                        Instrument / setup
+                        <input type="text" id="instrument" maxlength="60"
+                               placeholder="e.g. NIFTY breakout">
+                    </label>
+
+                    <label>
+                        Primary emotion
+                        <select id="emotion" required>
+                            <option value="Calm">Calm</option>
+                            <option value="Fear">Fear</option>
+                            <option value="Greed">Greed</option>
+                            <option value="FOMO">FOMO</option>
+                            <option value="Revenge trading">Revenge trading urge</option>
+                            <option value="Impatience">Impatience</option>
+                            <option value="Overconfidence">Overconfidence</option>
+                            <option value="Frustration">Frustration</option>
+                        </select>
+                    </label>
+
+                    <label>
+                        Emotional intensity (1–5)
+                        <select id="emotionIntensity" required>
+                            <option value="1">1 — Very mild</option>
+                            <option value="2">2 — Mild</option>
+                            <option value="3" selected>3 — Moderate</option>
+                            <option value="4">4 — Strong</option>
+                            <option value="5">5 — Very strong</option>
+                        </select>
+                    </label>
+
+                    <label>
+                        Did you follow your plan?
+                        <select id="planFollowed" required>
+                            <option value="yes">Yes</option>
+                            <option value="partly">Partly</option>
+                            <option value="no">No</option>
+                        </select>
+                    </label>
+
+                    <label>
+                        Trade outcome (optional)
+                        <select id="tradeOutcome">
+                            <option value="Not recorded">Not recorded</option>
+                            <option value="Win">Win</option>
+                            <option value="Loss">Loss</option>
+                            <option value="Breakeven">Breakeven</option>
+                        </select>
+                    </label>
+
+                    <label class="full-width">
+                        What happened?
+                        <textarea id="journalEvent" rows="3" maxlength="1500"
+                                  placeholder="Describe the situation without judging yourself..."></textarea>
+                    </label>
+
+                    <label class="full-width">
+                        What will you do differently next time?
+                        <textarea id="journalLesson" rows="3" maxlength="1500"
+                                  placeholder="Write one specific action you can take..."></textarea>
+                    </label>
+                </div>
+
+                <div class="button-row">
+                    <button type="submit">Save Journal Entry</button>
+                </div>
+
+                <p id="journalMessage" class="message" role="status" aria-live="polite"></p>
+            </form>
+
+            <div class="journal-list" id="journalList"></div>
+
+            <p id="journalEmpty" class="empty-state">
+                No emotional journal entries yet.
+            </p>
+        </section>
+
+        <!-- PRE-TRADE CHECKLIST -->
+        <section class="panel" id="mindset">
+            <div class="section-heading">
+                <div>
+                    <p class="eyebrow">BEFORE YOU CLICK BUY OR SELL</p>
+                    <h2>Mindset Checklist</h2>
+                </div>
+                <span class="badge" id="checklistCount">0 / 6 complete</span>
+            </div>
+
+            <p class="section-description">
+                Use this checklist to pause and assess your readiness.
+                It is a reflection tool, not a guarantee of good decisions.
+            </p>
+
+            <div class="checklist">
+                <label class="check-item">
+                    <input type="checkbox" data-rule="plan">
+                    <span>
+                        <strong>I have a defined setup</strong>
+                        <small>I can explain why this trade meets my criteria.</small>
+                    </span>
+                </label>
+
+                <label class="check-item">
+                    <input type="checkbox" data-rule="risk">
+                    <span>
+                        <strong>I know my risk</strong>
+                        <small>My position size and stop-loss are planned.</small>
+                    </span>
+                </label>
+
+                <label class="check-item">
+                    <input type="checkbox" data-rule="emotion">
+                    <span>
+                        <strong>I am not chasing the market</strong>
+                        <small>I can accept missing a trade without forcing entry.</small>
+                    </span>
+                </label>
+
+                <label class="check-item">
+                    <input type="checkbox" data-rule="loss">
+                    <span>
+                        <strong>I can accept a loss</strong>
+                        <small>I won't move my stop just to avoid being wrong.</small>
+                    </span>
+                </label>
+
+                <label class="check-item">
+                    <input type="checkbox" data-rule="limits">
+                    <span>
+                        <strong>I know my stopping conditions</strong>
+                        <small>I have defined when I will stop trading.</small>
+                    </span>
+                </label>
+
+                <label class="check-item">
+                    <input type="checkbox" data-rule="focus">
+                    <span>
+                        <strong>I can focus on the process</strong>
+                        <small>I am not trading from exhaustion or distraction.</small>
+                    </span>
+                </label>
+            </div>
+
+            <button type="button" id="resetChecklist" class="secondary-btn">
+                Reset Checklist
+            </button>
+        </section>
+
+        <!-- LESSONS & NOTES -->
+        <section class="panel" id="lessons">
+            <div class="section-heading">
+                <div>
+                    <p class="eyebrow">BUILD SELF-AWARENESS</p>
+                    <h2>Personal Lessons & Notes</h2>
+                </div>
+                <span class="badge">Saved locally</span>
+            </div>
+
+            <label class="notes-label" for="personalNotes">
+                Write your personal trading principles, recurring patterns,
+                or reminders.
+            </label>
+
+            <textarea id="personalNotes" rows="7" maxlength="5000"
+                      placeholder="Example: I tend to feel FOMO after missing a move. My response is to wait for my next predefined setup."></textarea>
+
+            <div class="button-row">
+                <button type="button" id="saveNotes">Save Notes</button>
+            </div>
+
+            <p id="notesMessage" class="message" role="status" aria-live="polite"></p>
+        </section>
+
+        <footer class="page-footer">
+            <p>Consistency comes from repeatable decisions, not perfect predictions.</p>
+            <p>For reflection and education only. No trading outcome is guaranteed.</p>
+        </footer>
+
+    </main>
+</div>
+
+<script src="trading-psychology.js"></script>
+</body>
+</html>

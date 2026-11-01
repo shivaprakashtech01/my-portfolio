@@ -419,6 +419,7 @@ footer p {
     grid-template-columns: repeat(3, minmax(0, 1fr));
   }
 }
+
 .dashboard-link {
   display: inline-block;
   margin-top: 18px;
@@ -430,3 +431,33 @@ footer p {
 .dashboard-link:hover {
   text-decoration: underline;
 }
+
+.dashboard-link {
+  display: inline-block;
+  margin-top: 18px;
+  color: #39d98a;
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.dashboard-link:hover {
+  text-decoration: underline;
+}
+
+.dashboard-link {
+    display: inline-block;
+    margin-top: 12px;
+    padding: 10px 16px;
+    border-radius: 8px;
+    background: #22c55e;
+    color: #08110b;
+    font-weight: 700;
+    font-size: 13px;
+    text-decoration: none;
+    transition: background 0.2s ease;
+}
+
+.dashboard-link:hover {
+    background: #4ade80;
+}
+

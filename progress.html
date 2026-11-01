@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Progress & Transformation | Shiva's Portfolio</title>
+
+    <link rel="stylesheet" href="progress.css">
+
+    <!-- Chart.js for progress charts -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <script src="progress.js" defer></script>
+</head>
+
+<body>
+
+    <div class="dashboard">
+
+        <!-- SIDEBAR -->
+        <aside class="sidebar">
+            <div class="brand">
+                <span class="brand-icon">S</span>
+                <div>
+                    <h2>SHIVA</h2>
+                    <p>FITNESS TRACKER</p>
+                </div>
+            </div>
+
+            <p class="menu-label">FITNESS</p>
+
+            <nav class="navigation">
+                <a href="index.html">← Main Portfolio</a>
+                <a href="workout.html">Workout Routine</a>
+                <a href="nutrition.html">Nutrition & Diet</a>
+                <a href="progress.html" class="active">
+                    Progress & Transformation
+                </a>
+            </nav>
+
+            <div class="sidebar-bottom">
+                <span class="status-dot"></span>
+                <span>Your journey, your progress.</span>
+            </div>
+        </aside>
+
+        <!-- MAIN CONTENT -->
+        <main class="main-content">
+
+            <header class="topbar">
+                <div>
+                    <p class="eyebrow">FITNESS / TRANSFORMATION</p>
+                    <h1>Progress Dashboard</h1>
+                    <p class="subtitle">
+                        Track your progress. Stay consistent. Become stronger.
+                    </p>
+                </div>
+
+                <div class="today-badge" id="todayDate">Loading date...</div>
+            </header>
+
+            <!-- OVERVIEW CARDS -->
+            <section class="overview-grid">
+
+                <article class="stat-card">
+                    <p>Starting Weight</p>
+                    <h2 id="startingWeight">-- <span>kg</span></h2>
+                    <small>Your starting point</small>
+                </article>
+
+                <article class="stat-card highlight-card">
+                    <p>Current Weight</p>
+                    <h2 id="currentWeight">-- <span>kg</span></h2>
+                    <small id="weightChange">Add your first entry</small>
+                </article>
+
+                <article class="stat-card">
+                    <p>Goal Weight</p>
+                    <h2 id="goalWeight">-- <span>kg</span></h2>
+                    <small>Your target</small>
+                </article>
+
+                <article class="stat-card">
+                    <p>Goal Progress</p>
+                    <h2 id="goalProgress">0<span>%</span></h2>
+                    <div class="progress-track">
+                        <div class="progress-fill" id="goalProgressBar"></div>
+                    </div>
+                </article>
+
+            </section>
+
+            <!-- WEIGHT TRACKER AND CHART -->
+            <section class="content-grid">
+
+                <article class="panel">
+                    <div class="section-heading">
+                        <div>
+                            <p class="eyebrow">CONSISTENCY MATTERS</p>
+                            <h2>Weight Tracker</h2>
+                        </div>
+                    </div>
+
+                    <form id="weightForm" class="tracker-form">
+
+                        <div class="form-group">
+                            <label for="weightDate">Date</label>
+                            <input type="date" id="weightDate" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="weightInput">Weight (kg)</label>
+                            <input
+                                type="number"
+                                id="weightInput"
+                                min="1"
+                                max="500"
+                                step="0.1"
+                                placeholder="e.g. 72.5"
+                                required
+                            >
+                        </div>
+
+                        <button type="submit" class="primary-button">
+                            + Save Weight
+                        </button>
+
+                    </form>
+
+                    <div class="table-wrapper">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Date</th>
+                                    <th>Weight</th>
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
+
+                            <tbody id="weightHistory">
+                                <tr>
+                                    <td colspan="3" class="empty-state">
+                                        Your weight entries will appear here.
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </article>
+
+                <article class="panel">
+                    <div class="section-heading">
+                        <div>
+                            <p class="eyebrow">YOUR JOURNEY OVER TIME</p>
+                            <h2>Weight Progress</h2>
+                        </div>
+                    </div>
+
+                    <div class="chart-container">
+                        <canvas id="weightChart"></canvas>
+                    </div>
+
+                    <p class="helper-text">
+                        Record your weight regularly to build your chart.
+                    </p>
+                </article>
+
+            </section>
+
+            <!-- GOAL SETTINGS -->
+            <section class="panel">
+                <div class="section-heading">
+                    <div>
+                        <p class="eyebrow">SET YOUR DIRECTION</p>
+                        <h2>Transformation Goal</h2>
+                    </div>
+                </div>
+
+                <form id="goalForm" class="goal-form">
+
+                    <div class="form-group">
+                        <label for="goalWeightInput">Target Weight (kg)</label>
+                        <input
+                            type="number"
+                            id="goalWeightInput"
+                            min="1"
+                            max="500"
+                            step="0.1"
+                            placeholder="e.g. 70"
+                            required
+                        >
+                    </div>
+
+                    <div class="form-group">
+                        <label for="goalDate">Target Date</label>
+                        <input type="date" id="goalDate">
+                    </div>
+
+                    <button type="submit" class="primary-button">
+                        Save Goal
+                    </button>
+
+                </form>
+
+                <div class="goal-summary">
+                    <div class="progress-track large-track">
+                        <div class="progress-fill" id="mainGoalProgressBar"></div>
+                    </div>
+
+                    <p id="goalMessage">
+                        Set your goal and start tracking your journey.
+                    </p>
+                </div>
+            </section>
+
+            <!-- BODY MEASUREMENTS -->
+            <section class="panel">
+                <div class="section-heading">
+                    <div>
+                        <p class="eyebrow">MORE THAN THE SCALE</p>
+                        <h2>Body Measurements</h2>
+                    </div>
+                </div>
+
+                <form id="measurementForm" class="measurement-grid">
+
+                    <div class="form-group">
+                        <label for="measurementDate">Date</label>
+                        <input type="date" id="measurementDate" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="chestInput">Chest (cm)</label>
+                        <input type="number" id="chestInput" min="0" step="0.1">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="waistInput">Waist (cm)</label>
+                        <input type="number" id="waistInput" min="0" step="0.1">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="armInput">Arm (cm)</label>
+                        <input type="number" id="armInput" min="0" step="0.1">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="thighInput">Thigh (cm)</label>
+                        <input type="number" id="thighInput" min="0" step="0.1">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="measurementNotes">Notes</label>
+                        <input
+                            type="text"
+                            id="measurementNotes"
+                            placeholder="Optional notes"
+                        >
+                    </div>
+
+                    <button type="submit" class="primary-button">
+                        Save Measurements
+                    </button>
+
+                </form>
+
+                <div class="table-wrapper">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Date</th>
+                                <th>Chest</th>
+                                <th>Waist</th>
+                                <th>Arm</th>
+                                <th>Thigh</th>
+                                <th>Notes</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+
+                        <tbody id="measurementHistory">
+                            <tr>
+                                <td colspan="7" class="empty-state">
+                                    Your measurements will appear here.
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <!-- TRANSFORMATION PHOTOS -->
+            <section class="panel">
+                <div class="section-heading">
+                    <div>
+                        <p class="eyebrow">SMALL CHANGES ADD UP</p>
+                        <h2>Transformation Gallery</h2>
+                    </div>
+                </div>
+
+                <p class="helper-text">
+                    Add progress photos to compare your journey over time.
+                    Photos are stored in this browser on this device.
+                </p>
+
+                <form id="photoForm" class="photo-form">
+                    <div class="form-group">
+                        <label for="photoDate">Photo Date</label>
+                        <input type="date" id="photoDate" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="photoInput">Choose Photo</label>
+                        <input
+                            type="file"
+                            id="photoInput"
+                            accept="image/*"
+                            required
+                        >
+                    </div>
+
+                    <div class="form-group">
+                        <label for="photoCaption">Caption</label>
+                        <input
+                            type="text"
+                            id="photoCaption"
+                            maxlength="100"
+                            placeholder="e.g. Week 1"
+                        >
+                    </div>
+
+                    <button type="submit" class="primary-button">
+                        + Add Photo
+                    </button>
+                </form>
+
+                <div id="photoGallery" class="photo-gallery">
+                    <p class="empty-state">
+                        Your transformation photos will appear here.
+                    </p>
+                </div>
+            </section>
+
+            <footer class="footer">
+                <p>Built for consistency, not perfection. 💚</p>
+            </footer>
+
+        </main>
+
+    </div>
+
+</body>
+</html>

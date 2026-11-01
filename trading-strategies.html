@@ -1,0 +1,570 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Trading Concepts & Strategies | Shiva</title>
+
+    <link rel="stylesheet" href="trading-strategies.css">
+
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+    >
+</head>
+
+<body>
+
+    <div class="dashboard">
+
+        <!-- SIDEBAR -->
+        <aside class="sidebar">
+
+            <a href="index.html" class="brand">
+                <span class="brand-icon">
+                    <i class="fa-solid fa-chart-line"></i>
+                </span>
+
+                <span>Shiva<span class="green-text">.Trade</span></span>
+            </a>
+
+            <p class="sidebar-label">TRADING WORKSPACE</p>
+
+            <nav class="sidebar-nav">
+
+                <a href="#overview" class="nav-link active">
+                    <i class="fa-solid fa-house"></i>
+                    Overview
+                </a>
+
+                <a href="#concepts" class="nav-link">
+                    <i class="fa-solid fa-book-open"></i>
+                    Trading Concepts
+                </a>
+
+                <a href="#strategies" class="nav-link">
+                    <i class="fa-solid fa-chess"></i>
+                    Strategies
+                </a>
+
+                <a href="#checklist" class="nav-link">
+                    <i class="fa-solid fa-list-check"></i>
+                    Strategy Checklist
+                </a>
+
+                <a href="#notes" class="nav-link">
+                    <i class="fa-solid fa-pen-to-square"></i>
+                    My Notes
+                </a>
+
+                <a href="#favorites" class="nav-link">
+                    <i class="fa-solid fa-star"></i>
+                    Favorites
+                </a>
+
+            </nav>
+
+            <div class="sidebar-bottom">
+                <span class="status-dot"></span>
+                Learning Mode Active
+            </div>
+
+        </aside>
+
+
+        <!-- MAIN CONTENT -->
+        <main class="main-content">
+
+            <!-- TOPBAR -->
+            <header class="topbar">
+
+                <div>
+                    <p class="eyebrow">YOUR TRADING WORKSPACE</p>
+
+                    <h1>
+                        Trading Concepts
+                        <span class="green-text">& Strategies</span>
+                    </h1>
+                </div>
+
+                <a href="index.html" class="back-button">
+                    <i class="fa-solid fa-arrow-left"></i>
+                    Portfolio
+                </a>
+
+            </header>
+
+
+            <!-- OVERVIEW -->
+            <section id="overview" class="hero-card">
+
+                <div class="hero-content">
+
+                    <span class="badge">
+                        <i class="fa-solid fa-graduation-cap"></i>
+                        TRADING KNOWLEDGE HUB
+                    </span>
+
+                    <h2>
+                        Understand the setup.
+                        <br>
+                        <span class="green-text">Plan the trade.</span>
+                    </h2>
+
+                    <p>
+                        Build your trading knowledge, study different market
+                        conditions, document strategies, and create a personal
+                        reference library for continuous improvement.
+                    </p>
+
+                    <a href="#concepts" class="primary-button">
+                        Explore Concepts
+                        <i class="fa-solid fa-arrow-down"></i>
+                    </a>
+
+                </div>
+
+                <div class="hero-visual">
+
+                    <div class="visual-icon">
+                        <i class="fa-solid fa-chess-knight"></i>
+                    </div>
+
+                    <div class="visual-stat">
+                        <span>LEARN</span>
+                        <i class="fa-solid fa-arrow-right"></i>
+                        <span>PLAN</span>
+                        <i class="fa-solid fa-arrow-right"></i>
+                        <span>REVIEW</span>
+                    </div>
+
+                    <div class="visual-caption">
+                        KNOWLEDGE · DISCIPLINE · CONSISTENCY
+                    </div>
+
+                </div>
+
+            </section>
+
+
+            <!-- STATISTICS -->
+            <section class="stats-grid">
+
+                <article class="stat-card">
+                    <div class="stat-icon green-icon">
+                        <i class="fa-solid fa-book-open"></i>
+                    </div>
+
+                    <p>Concepts</p>
+                    <h3 id="conceptCount">8</h3>
+                    <span class="stat-caption">Available to study</span>
+                </article>
+
+                <article class="stat-card">
+                    <div class="stat-icon blue-icon">
+                        <i class="fa-solid fa-chess"></i>
+                    </div>
+
+                    <p>Strategies</p>
+                    <h3 id="strategyCount">6</h3>
+                    <span class="stat-caption">Available to explore</span>
+                </article>
+
+                <article class="stat-card">
+                    <div class="stat-icon purple-icon">
+                        <i class="fa-solid fa-star"></i>
+                    </div>
+
+                    <p>Favorites</p>
+                    <h3 id="favoriteCount">0</h3>
+                    <span class="stat-caption">Saved for revision</span>
+                </article>
+
+                <article class="stat-card">
+                    <div class="stat-icon orange-icon">
+                        <i class="fa-solid fa-note-sticky"></i>
+                    </div>
+
+                    <p>My Notes</p>
+                    <h3 id="noteCount">0</h3>
+                    <span class="stat-caption">Personal study notes</span>
+                </article>
+
+            </section>
+
+
+            <!-- CONCEPT LIBRARY -->
+            <section id="concepts" class="content-section">
+
+                <div class="section-heading">
+
+                    <div>
+                        <p class="eyebrow">BUILD YOUR FOUNDATION</p>
+                        <h2>Trading Concepts Library</h2>
+
+                        <p class="section-description">
+                            Learn the ideas used to understand market behavior.
+                        </p>
+                    </div>
+
+                </div>
+
+
+                <div class="filter-bar">
+
+                    <div class="search-box">
+                        <i class="fa-solid fa-magnifying-glass"></i>
+
+                        <input
+                            type="search"
+                            id="conceptSearch"
+                            placeholder="Search concepts..."
+                            aria-label="Search trading concepts"
+                        >
+                    </div>
+
+                    <select id="conceptFilter" aria-label="Filter concepts">
+
+                        <option value="all">All Categories</option>
+                        <option value="structure">Market Structure</option>
+                        <option value="trend">Trends</option>
+                        <option value="price-action">Price Action</option>
+                        <option value="risk">Risk & Planning</option>
+
+                    </select>
+
+                </div>
+
+
+                <div id="conceptGrid" class="card-grid">
+                    <!-- Generated using JavaScript -->
+                </div>
+
+            </section>
+
+
+            <!-- STRATEGIES -->
+            <section id="strategies" class="content-section">
+
+                <div class="section-heading">
+
+                    <div>
+                        <p class="eyebrow">TURN KNOWLEDGE INTO A PLAN</p>
+                        <h2>Strategy Library</h2>
+
+                        <p class="section-description">
+                            Explore different approaches and the conditions
+                            in which they may be useful.
+                        </p>
+                    </div>
+
+                </div>
+
+
+                <div class="filter-bar">
+
+                    <div class="search-box">
+                        <i class="fa-solid fa-magnifying-glass"></i>
+
+                        <input
+                            type="search"
+                            id="strategySearch"
+                            placeholder="Search strategies..."
+                            aria-label="Search trading strategies"
+                        >
+                    </div>
+
+                    <select id="strategyFilter" aria-label="Filter strategies">
+
+                        <option value="all">All Strategies</option>
+                        <option value="trend">Trend Following</option>
+                        <option value="breakout">Breakout</option>
+                        <option value="reversal">Reversal</option>
+                        <option value="range">Range Trading</option>
+
+                    </select>
+
+                </div>
+
+
+                <div id="strategyGrid" class="card-grid">
+                    <!-- Generated using JavaScript -->
+                </div>
+
+                <p class="disclaimer">
+                    <i class="fa-solid fa-circle-info"></i>
+
+                    These strategies are educational examples, not guaranteed
+                    trading signals. Test and validate a strategy before
+                    considering it for real trading.
+                </p>
+
+            </section>
+
+
+            <!-- STRATEGY CHECKLIST -->
+            <section id="checklist" class="content-section">
+
+                <div class="section-heading">
+
+                    <div>
+                        <p class="eyebrow">PLAN BEFORE EXECUTION</p>
+                        <h2>Strategy Checklist</h2>
+
+                        <p class="section-description">
+                            Record your setup conditions, invalidation point,
+                            and trade management rules.
+                        </p>
+                    </div>
+
+                </div>
+
+
+                <div class="two-column-layout">
+
+                    <form id="checklistForm" class="panel">
+
+                        <h3>
+                            <i class="fa-solid fa-list-check green-text"></i>
+                            Create a Trading Plan
+                        </h3>
+
+                        <label for="planName">Strategy Name</label>
+
+                        <input
+                            type="text"
+                            id="planName"
+                            placeholder="e.g. Breakout with Retest"
+                            required
+                        >
+
+
+                        <label for="planMarket">Market / Asset</label>
+
+                        <input
+                            type="text"
+                            id="planMarket"
+                            placeholder="e.g. NIFTY 50"
+                            required
+                        >
+
+
+                        <label for="planTimeframe">Timeframe</label>
+
+                        <select id="planTimeframe">
+
+                            <option>5 minutes</option>
+                            <option>15 minutes</option>
+                            <option>1 hour</option>
+                            <option>4 hours</option>
+                            <option selected>Daily</option>
+                            <option>Weekly</option>
+
+                        </select>
+
+
+                        <label for="planEntry">Entry Conditions</label>
+
+                        <textarea
+                            id="planEntry"
+                            rows="3"
+                            placeholder="What must happen before considering an entry?"
+                            required
+                        ></textarea>
+
+
+                        <label for="planInvalidation">Invalidation / Stop-Loss Logic</label>
+
+                        <textarea
+                            id="planInvalidation"
+                            rows="3"
+                            placeholder="What would show that your trade idea is wrong?"
+                            required
+                        ></textarea>
+
+
+                        <label for="planExit">Exit Conditions</label>
+
+                        <textarea
+                            id="planExit"
+                            rows="3"
+                            placeholder="Define exits and profit-taking conditions..."
+                            required
+                        ></textarea>
+
+
+                        <label class="checkbox-label">
+                            <input type="checkbox" id="planRiskCheck" required>
+                            I have defined my risk before considering a trade.
+                        </label>
+
+
+                        <button type="submit" class="primary-button full-width">
+                            <i class="fa-solid fa-floppy-disk"></i>
+                            Save Trading Plan
+                        </button>
+
+                    </form>
+
+
+                    <div class="panel">
+
+                        <div class="panel-title-row">
+                            <h3>Saved Trading Plans</h3>
+
+                            <span class="count-pill" id="planBadge">
+                                0 saved
+                            </span>
+                        </div>
+
+                        <div id="plansList" class="saved-list">
+                            <!-- Generated using JavaScript -->
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+
+            <!-- PERSONAL NOTES -->
+            <section id="notes" class="content-section">
+
+                <div class="section-heading">
+
+                    <div>
+                        <p class="eyebrow">YOUR PERSONAL KNOWLEDGE BASE</p>
+                        <h2>My Study Notes</h2>
+
+                        <p class="section-description">
+                            Save useful explanations, examples, and lessons.
+                        </p>
+                    </div>
+
+                </div>
+
+
+                <div class="two-column-layout">
+
+                    <form id="noteForm" class="panel">
+
+                        <h3>
+                            <i class="fa-solid fa-pen-to-square green-text"></i>
+                            Add a Note
+                        </h3>
+
+
+                        <label for="noteTitle">Note Title</label>
+
+                        <input
+                            type="text"
+                            id="noteTitle"
+                            placeholder="e.g. Identifying market structure"
+                            required
+                        >
+
+
+                        <label for="noteCategory">Category</label>
+
+                        <select id="noteCategory">
+
+                            <option>Market Structure</option>
+                            <option>Trend Following</option>
+                            <option>Breakout</option>
+                            <option>Reversal</option>
+                            <option>Risk Management</option>
+                            <option>Other</option>
+
+                        </select>
+
+
+                        <label for="noteContent">Your Notes</label>
+
+                        <textarea
+                            id="noteContent"
+                            rows="6"
+                            placeholder="Write your learning notes here..."
+                            required
+                        ></textarea>
+
+
+                        <button type="submit" class="primary-button full-width">
+                            <i class="fa-solid fa-plus"></i>
+                            Save Note
+                        </button>
+
+                    </form>
+
+
+                    <div class="panel">
+
+                        <div class="panel-title-row">
+                            <h3>Saved Notes</h3>
+
+                            <span class="count-pill" id="notesBadge">
+                                0 saved
+                            </span>
+                        </div>
+
+                        <div id="notesList" class="saved-list">
+                            <!-- Generated using JavaScript -->
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+
+            <!-- FAVORITES -->
+            <section id="favorites" class="content-section">
+
+                <div class="section-heading">
+
+                    <div>
+                        <p class="eyebrow">QUICK REVISION</p>
+                        <h2>My Favorites</h2>
+
+                        <p class="section-description">
+                            Revisit the concepts and strategies you have bookmarked.
+                        </p>
+                    </div>
+
+                </div>
+
+
+                <div id="favoritesList" class="card-grid">
+                    <!-- Generated using JavaScript -->
+                </div>
+
+            </section>
+
+
+            <!-- FOOTER -->
+            <footer class="footer">
+
+                <p>Learn consistently. Plan carefully. Review honestly.</p>
+
+                <p>
+                    Shiva's Trading Hub
+                    <span class="green-text">© 2026</span>
+                </p>
+
+            </footer>
+
+        </main>
+
+    </div>
+
+
+    <div id="toast" class="toast" role="status" aria-live="polite"></div>
+
+    <script src="trading-strategies.js"></script>
+
+</body>
+
+</html>
