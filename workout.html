@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <meta name="description"
+        content="My personal gym workout routine and training tracker.">
+
+  <title>Workout Routine | My World</title>
+
+  <link rel="stylesheet" href="workout.css">
+  <script src="workout.js" defer></script>
+</head>
+
+<body>
+
+  <!-- SIDEBAR -->
+  <aside class="sidebar">
+    <a href="index.html" class="brand">MY WORLD<span>.</span></a>
+
+    <p class="sidebar-label">FITNESS CENTER</p>
+
+    <nav>
+      <a href="#overview" class="nav-item active">▦ Overview</a>
+      <a href="#schedule" class="nav-item">▤ Workout Split</a>
+      <a href="#tracker" class="nav-item">✓ Exercise Tracker</a>
+      <a href="#progress" class="nav-item">↗ Progress</a>
+    </nav>
+
+    <div class="sidebar-bottom">
+      <p>CONSISTENCY IS KEY.</p>
+      <a href="index.html">← Back to My World</a>
+    </div>
+  </aside>
+
+  <!-- MAIN CONTENT -->
+  <main class="main-content">
+
+    <!-- HEADER -->
+    <header class="topbar">
+      <div>
+        <p class="eyebrow">FITNESS / WORKOUT ROUTINE</p>
+        <h1>Workout <span>Dashboard.</span></h1>
+      </div>
+
+      <div class="status-badge">
+        <span class="status-dot"></span>
+        MY FITNESS JOURNEY
+      </div>
+    </header>
+
+    <!-- OVERVIEW -->
+    <section id="overview" class="section">
+      <div class="welcome-card">
+        <div>
+          <p class="eyebrow">TRAIN WITH PURPOSE</p>
+          <h2>Build strength.<br>Stay consistent.</h2>
+          <p>
+            Track your workouts, record completed exercises
+            and work towards your fitness goals.
+          </p>
+          <a href="#schedule" class="primary-btn">
+            View Workout Split ↗
+          </a>
+        </div>
+
+        <div class="welcome-icon">🏋️</div>
+      </div>
+
+      <div class="stats-grid">
+        <article class="stat-card">
+          <p>WEEKLY TRAINING</p>
+          <h3>6 <span>Days</span></h3>
+          <small>Sunday is recovery day</small>
+        </article>
+
+        <article class="stat-card">
+          <p>EXERCISES COMPLETED</p>
+          <h3 id="completedCount">0</h3>
+          <small>Across your weekly plan</small>
+        </article>
+
+        <article class="stat-card">
+          <p>WEEKLY COMPLETION</p>
+          <h3 id="completionPercent">0%</h3>
+          <div class="progress-track">
+            <div id="overallProgress" class="progress-fill"></div>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- WEEKLY SCHEDULE -->
+    <section id="schedule" class="section">
+      <div class="section-heading">
+        <div>
+          <p class="eyebrow">YOUR TRAINING PLAN</p>
+          <h2>Weekly Workout Split</h2>
+        </div>
+        <span class="section-tag">6 DAYS / WEEK</span>
+      </div>
+
+      <div class="days-grid">
+        <button class="day-card" data-day="Monday">
+          <span>MON</span>
+          <strong>Legs</strong>
+          <small>+ Shoulders</small>
+        </button>
+
+        <button class="day-card" data-day="Tuesday">
+          <span>TUE</span>
+          <strong>Chest</strong>
+          <small>+ Triceps</small>
+        </button>
+
+        <button class="day-card" data-day="Wednesday">
+          <span>WED</span>
+          <strong>Back</strong>
+          <small>+ Biceps</small>
+        </button>
+
+        <button class="day-card" data-day="Thursday">
+          <span>THU</span>
+          <strong>Legs</strong>
+          <small>+ Abs</small>
+        </button>
+
+        <button class="day-card" data-day="Friday">
+          <span>FRI</span>
+          <strong>Chest</strong>
+          <small>+ Back</small>
+        </button>
+
+        <button class="day-card" data-day="Saturday">
+          <span>SAT</span>
+          <strong>Full Arms</strong>
+          <small>Biceps + Triceps</small>
+        </button>
+
+        <button class="day-card rest-day" data-day="Sunday">
+          <span>SUN</span>
+          <strong>Rest Day</strong>
+          <small>Recovery</small>
+        </button>
+      </div>
+    </section>
+
+    <!-- EXERCISE TRACKER -->
+    <section id="tracker" class="section">
+      <div class="section-heading">
+        <div>
+          <p class="eyebrow">TODAY'S TRAINING</p>
+          <h2 id="workoutTitle">Monday — Legs + Shoulders</h2>
+        </div>
+
+        <span id="exerciseSummary" class="section-tag">
+          0 COMPLETED
+        </span>
+      </div>
+
+      <p class="section-description">
+        Select a day above, then tick the exercises you complete.
+        Your progress is saved in this browser.
+      </p>
+
+      <div class="exercise-list" id="exerciseList"></div>
+
+      <button id="resetDay" class="secondary-btn">
+        Reset selected day
+      </button>
+    </section>
+
+    <!-- PROGRESS -->
+    <section id="progress" class="section">
+      <p class="eyebrow">KEEP MOVING FORWARD</p>
+      <h2>Your Training <span>Progress.</span></h2>
+
+      <div class="progress-card">
+        <div class="progress-header">
+          <div>
+            <h3>Weekly completion</h3>
+            <p>Exercises checked off in your plan</p>
+          </div>
+
+          <strong id="progressLabel">0%</strong>
+        </div>
+
+        <div class="progress-track large-track">
+          <div id="progressBar" class="progress-fill"></div>
+        </div>
+
+        <p id="progressMessage" class="progress-message">
+          Start your first workout to track your progress.
+        </p>
+      </div>
+
+      <p class="note">
+        Note: This tracker saves data in this browser on this device.
+        It does not sync automatically across different devices.
+      </p>
+    </section>
+
+    <footer>
+      <a href="index.html" class="brand">MY WORLD<span>.</span></a>
+      <p>Train smart. Stay consistent. Recover well.</p>
+    </footer>
+
+  </main>
+
+</body>
+</html>

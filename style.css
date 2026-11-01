@@ -419,3 +419,14 @@ footer p {
     grid-template-columns: repeat(3, minmax(0, 1fr));
   }
 }
+.dashboard-link {
+  display: inline-block;
+  margin-top: 18px;
+  color: #39d98a;
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.dashboard-link:hover {
+  text-decoration: underline;
+}
