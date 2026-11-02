@@ -457,18 +457,3 @@ footer p {
     transition: background 0.2s ease;
 }
 
-.dashboard-link:hover {
-    background: #4ade80;
-}
-
-.dashboard-link {
-  display: inline-block;
-  margin-top: 18px;
-  color: #39d98a;
-  font-size: 13px;
-  font-weight: 700;
-}
-
-.dashboard-link:hover {
-  text-decoration: underline;
-}
